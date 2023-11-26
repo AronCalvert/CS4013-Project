@@ -4,8 +4,8 @@ import java.util.*;
 
 public class testModule {
     public static void main(String[] args) throws IOException, FileNotFoundException {
-        
-        Programme testProg = new Programme("LM123", "Mathematics", 4);
+        //test code for course programme
+        Programme testProg = new Programme("LM111", "testProg", 4);
         courseModule test1 = new courseModule("AH8013", "CRITICAL APPROACHES TO DISPLAY AND PARTICIPATION", 9);
         courseModule test2 = new courseModule("AS2202", "INTRODUCTION TO SPANISH LANGUAGE 2", 3);
         courseModule test3 = new courseModule("AS2301", "INTRODUCTION TO SPANISH LANGUAGE 1", 3);
@@ -26,9 +26,9 @@ public class testModule {
         testProg.addModule(4, 1, test7);
         testProg.addModule(4, 2, test8);
         
-        testProg.programmeSaveCSV();
+        programmeSaveCSV(testProg);
         
-        BufferedReader x = new BufferedReader(new FileReader("LM123.CSV"));
+        BufferedReader x = new BufferedReader(new FileReader("LM111.CSV"));
         List<String> CSVdetails;
         do {
             CSVdetails = readCSVline(x);
@@ -45,6 +45,41 @@ public class testModule {
         while(CSVdetails != null);
         
         x.close();
+        
+        //test code for faculty
+        Faculty testFac1 = new Faculty("John Doe", "Business");
+        testFac1.addModule("MS4043");
+        testFac1.addModule("MS4613");
+        Faculty testFac2 = new Faculty("Jane Doe", "Arts");
+        testFac2.addModule("AC4004");
+        testFac2.addModule("CS4013");
+        testFac2.addModule("MS4403");
+        Faculty testFac3 = new Faculty("Bill Gates", "Mathematics");
+        testFac3.addModule("AC1234");
+        testFac3.addModule("BE5678");
+        Faculty testFac4 = new Faculty("John Cena", "Business");
+        testFac4.addModule("MS1789");
+        testFac4.addModule("AC5612");
+        testFac4.addModule("EM5123");
+        
+        ArrayList<Faculty> allFaculty = new ArrayList<Faculty>();
+        allFaculty.add(testFac1);
+        allFaculty.add(testFac2);
+        allFaculty.add(testFac3);
+        allFaculty.add(testFac4);
+        
+        facultySaveCSV(allFaculty);
+        Faculty testSearch = facultyLoadFromCSV("Bill Gates");
+        if(testSearch !=null )
+        {
+            System.out.printf(testSearch.getCSVString());
+        }
+        else
+        {
+            System.out.printf("Faculty not found");
+        }
+        
+        displayFacultyMenu();
         
         /**Scanner in = new Scanner(System.in);
         studentsModuleList allModules = new studentsModuleList();
@@ -93,10 +128,124 @@ public class testModule {
         {
            parts = new ArrayList<>(List.of(line.split(",")));
         }
+        return parts;            
+    }
+    
+    public static void programmeSaveCSV(Programme programme) throws IOException
+    {
+        String fileName = programme.getProgCode() + ".CSV";
+        String CSVout = programme.getProgrammeCSV();
+        FileWriter myWriter = new FileWriter(fileName);
+        try
+        {
+            myWriter.write(CSVout);
+        }
+        catch (IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+        myWriter.close();
+        System.out.println("Successfully wrote to the file.");
+    }
+    
+    public static void facultySaveCSV(ArrayList<Faculty> allFac) throws IOException
+    {
+        String fileName = "Faculty.CSV";
         
-        return parts;
+        FileWriter myWriter = new FileWriter(fileName);
+        try
+        {
+            String CSVout = new String("Name,Department,Modules" + "\n");
+            myWriter.write(CSVout);
+            for(int i = 0; i < allFac.size(); i ++)
+            {
+                CSVout = allFac.get(i).getCSVString();
+                myWriter.write(CSVout);
+            }
+        }
+        catch (IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+        myWriter.close();
+        System.out.println("Successfully wrote to the file.");
+    }
+    
+    public static Faculty facultyLoadFromCSV(String name) throws IOException,FileNotFoundException
+    {
+        Faculty Fac = null;
+        
+        BufferedReader x = new BufferedReader(new FileReader("Faculty.CSV"));
+        List<String> CSVdetails;
+        CSVdetails = readCSVline(x);
+        do {
+            CSVdetails = readCSVline(x);
+            if(CSVdetails != null && CSVdetails.get(0).equals(name))
+            {
+                Fac = new Faculty(CSVdetails.get(0), CSVdetails.get(1));
+                for(int i = 2; i < CSVdetails.size(); i++)
+                {
+                    Fac.addModule(CSVdetails.get(i));
+                }
+                break;
+            }  
+        }
+        while(CSVdetails != null);
+        
+        x.close();
+        return Fac;
+    }
+    
+    public static void displayFacultyMenu() throws IOException
+    {
+        Scanner keyboard = new Scanner(System.in);
+        boolean facultyFound = false;
+        Faculty facultyDetails = null;
+        do{
+            System.out.println(new String(new char[50]).replace("\0", "\r\n")); //clear console
+            System.out.printf("Enter Name to Continue.");
+            String name = keyboard.nextLine();
+            facultyDetails = facultyLoadFromCSV(name);
+            if(facultyDetails !=null )
+            {
+                facultyFound = true;
+                //System.out.printf(facultyDetails.getCSVString());
+            }
+            else
+            {
+                System.out.println("Name not found!");
+                System.out.println("Press 'X' to exit or 'Enter' to continue.");
+                String command = keyboard.nextLine().toUpperCase();
+                if(command.equals("X")){
+                    break;
+                }
+            }
+        }
+        while(facultyFound == false);
+        
+        if(facultyFound == true)
+        {
+            System.out.println("Welcome " + facultyDetails.getName() +  "\n");
+            System.out.println("Your assigned modules are: ");
+            ArrayList<String> modules = facultyDetails.getModules();
+            for(int i = 0; i < modules.size(); i ++)
+            {
+                System.out.println(modules.get(i));
+            }
+            System.out.println("\nEnter the Module Code to Grade or Review.");
+            String command = keyboard.nextLine().toUpperCase();
             
             
-            
+            /** 
+            if (command.equals("S")) {
+                more = false;
+            } else if (command.equals("G")) {
+                more = false;
+                QCAcalculator calculator = new QCAcalculator();
+                double result = calculator.QCAcalculation(1,allModules);
+                System.out.println("QCA: " + result);
+            }*/
+        }
+        
     }
 }

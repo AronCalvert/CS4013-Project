@@ -25,18 +25,16 @@ public class Programme
         {
             programmeYears.add(new programmeYear());
         }
-        this.progName = progName;
-        this.progCode = progCode;
+        this.progName = new String(progName);
+        this.progCode = new String(progCode);
         this.numberOfYears = numberOfYears;        
     }
     
-    public void programmeSaveCSV()
+    public String getProgrammeCSV()
     {
-        try 
-        {
-            String fileName = progCode + ".CSV";
-            FileWriter myWriter = new FileWriter(fileName);
-            myWriter.write(progCode + "," + progName + "," + String.valueOf(numberOfYears) + "\n");
+            String progCSV = new String();
+            
+            progCSV += progCode + "," + progName + "," + String.valueOf(numberOfYears) + "\n";
             for(int i = 0; i < numberOfYears; i++)
             {
                 programmeYear year = programmeYears.get(i);
@@ -47,23 +45,16 @@ public class Programme
                          courseModule module = year.sem1.get(j);
                          modulesInSemester += "," + module.getModuleCode();
                     }
-                myWriter.write(String.valueOf(i + 1) + modulesInSemester + "\n");
+                progCSV += String.valueOf(i + 1) + modulesInSemester + "\n";
                 modulesInSemester = "";
                     for(int j = 0; j < year.sem2.size(); j++)
                         {
                              courseModule module = year.sem2.get(j);
                              modulesInSemester += "," + module.getModuleCode();
                         }
-                myWriter.write(String.valueOf(i + 1) + modulesInSemester + "\n");
-            }
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } 
-        catch (IOException e) 
-        {
-          System.out.println("An error occurred.");
-          e.printStackTrace();
-        }
+                progCSV += String.valueOf(i + 1) + modulesInSemester + "\n";
+            }       
+            return progCSV;
     }
     
     public void addModule(int progYear, int semester, courseModule newModule)
@@ -78,6 +69,11 @@ public class Programme
         {
             year.sem2.add(newModule);
         }
+    }
+    
+    public String getProgCode()
+    {
+        return progCode;
     }
 }
 
