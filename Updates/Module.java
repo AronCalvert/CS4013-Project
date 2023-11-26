@@ -6,28 +6,34 @@ public class Module {
     String title;
     int creditValue;
     String grade;
-
+    
+    public Module(String faculty, String code, String title, int creditValue) {
+    	this.code = code;
+    	this.title =title;
+    	this.creditValue = creditValue;
+    }
+    
     public void moduleInfo(String moduleCode, String grade, String fac) {
         boolean codeFound = false;
 
         switch (fac.toUpperCase()) {
             case "A":
-                fac = "/Users/paudie/Downloads/arts.csv";
+                fac = "src/CS4013ModuleCodeFiles/arts.csv";
                 break;
             case "B":
-                fac = "/Users/paudie/Downloads/business.csv";
+                fac = "src/CS4013ModuleCodeFiles/business.csv";
                 break;
             case "C":
-                fac = "/Users/paudie/Downloads/health-sciences.csv";
+                fac = "src/CS4013ModuleCodeFiles/health-sciences.csv";
                 break;
             case "D":
-                fac = "/Users/paudie/Downloads/interfaculty.csv";
+                fac = "src/CS4013ModuleCodeFiles/interfaculty.csv";
                 break;
             case "E":
-                fac = "/Users/paudie/Downloads/science-and-engineering.csv";
+                fac = "src/CS4013ModuleCodeFiles/science-and-engineering.csv";
                 break;
             case "F":
-                fac = "/Users/paudie/Downloads/ul-admin.csv";
+                fac = "src/CS4013ModuleCodeFiles/ul-admin.csv";
                 break;
             default:
             	System.out.println("Error: Please enter a valid faculty");

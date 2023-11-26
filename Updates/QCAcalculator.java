@@ -9,7 +9,7 @@ public class QCAcalculator {
 	String grade;
 	int credits;
 	
-	public double QCAcalculation(int factor, studentsModuleList set) {
+	public double QCAcalculation(int factor, ModuleList set) {
 		 moduleQpv = 0;
 		 qcs = 0;
 		 nonQualityHours = 0;
@@ -55,13 +55,18 @@ public class QCAcalculator {
 		    	case "NG":
 		    		moduleQpv = 0.00;
 		    		break;
-		    	case "I":
 		    	case "P":
+		    	case "I":
 		    	case "N":
 		    	case "H":
 		    	case "EX":
 		    		nonQualityHours += (set.get(i).getCreditValue() * factor);
-		    		moduleQpv = 0;
+		    		break;
+		    	case "M":
+		    	case "G":
+		    	case "R":
+		    	case "W":
+
 		    		break;
 		    	default:
 		    		System.out.println("Invalid grade"); 
