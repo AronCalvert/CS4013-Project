@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=studentsModuleList
+comment1.params=
+comment1.target=studentsModuleList()
+comment2.params=x
+comment2.target=void\ add(Module)
+comment3.params=factor
+comment3.target=int\ attemptedHours(double)
+comment4.params=
+comment4.target=int\ size()
+comment5.params=i
+comment5.target=Module\ get(int)
+numComments=6

@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Module
+comment1.params=moduleCode\ grade\ fac
+comment1.target=void\ moduleInfo(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getCode()
+comment3.params=
+comment3.target=java.lang.String\ getTitle()
+comment4.params=
+comment4.target=int\ getCreditValue()
+comment5.params=
+comment5.target=java.lang.String\ getGrade()
+numComments=6
