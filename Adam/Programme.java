@@ -30,6 +30,37 @@ public class Programme
         this.numberOfYears = numberOfYears;        
     }
     
+    public boolean checkModuleInProg(String moduleCode)
+    {
+            boolean result = false;
+            for(int i = 0; i < numberOfYears; i++)
+            {
+                programmeYear year = programmeYears.get(i);
+                    for(int j = 0; j < year.sem1.size(); j++)
+                    {
+                         courseModule module = year.sem1.get(j);
+                         if(module.getModuleCode().equals(moduleCode))
+                         {
+                             result = true;
+                             break;
+                         }
+                         
+                    }
+ 
+                    for(int j = 0; j < year.sem2.size(); j++)
+                    {
+                        courseModule module = year.sem2.get(j);
+                        if(module.getModuleCode().equals(moduleCode))
+                        {
+                             result = true;
+                             break;
+                        }
+                    }
+ 
+            }       
+            return result;
+    }
+    
     public String getProgrammeCSV()
     {
             String progCSV = new String();
@@ -74,6 +105,11 @@ public class Programme
     public String getProgCode()
     {
         return progCode;
+    }
+    
+    public int getProgYears()
+    {
+        return numberOfYears;
     }
 }
 

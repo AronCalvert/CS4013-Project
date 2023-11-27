@@ -6,7 +6,7 @@ public class testModule {
     public static void main(String[] args) throws IOException, FileNotFoundException {
         //test code for course programme
         Programme testProg = new Programme("LM111", "testProg", 4);
-        courseModule test1 = new courseModule("AH8013", "CRITICAL APPROACHES TO DISPLAY AND PARTICIPATION", 9);
+        courseModule test1 = new courseModule("MS4043", "CRITICAL APPROACHES TO DISPLAY AND PARTICIPATION", 9);
         courseModule test2 = new courseModule("AS2202", "INTRODUCTION TO SPANISH LANGUAGE 2", 3);
         courseModule test3 = new courseModule("AS2301", "INTRODUCTION TO SPANISH LANGUAGE 1", 3);
         courseModule test4 = new courseModule("AW4001", "ACADEMIC LITERACIES 1", 6);
@@ -28,23 +28,6 @@ public class testModule {
         
         programmeSaveCSV(testProg);
         
-        BufferedReader x = new BufferedReader(new FileReader("LM111.CSV"));
-        List<String> CSVdetails;
-        do {
-            CSVdetails = readCSVline(x);
-            if(CSVdetails != null)
-            {
-                for(int i = 0; i < CSVdetails.size(); i++)
-                {
-                    System.out.printf(CSVdetails.get(i) + ",");
-                    
-                }
-                System.out.printf("\n");
-            }
-        }
-        while(CSVdetails != null);
-        
-        x.close();
         
         //test code for faculty
         Faculty testFac1 = new Faculty("John Doe", "Business");
@@ -148,6 +131,49 @@ public class testModule {
         System.out.println("Successfully wrote to the file.");
     }
     
+    public static Programme programmeReadCSV(String FileName) throws IOException,FileNotFoundException
+    {
+        Programme newProg = null;
+        BufferedReader x = new BufferedReader(new FileReader(FileName));
+        List<String> CSVdetails;
+        CSVdetails = readCSVline(x);
+        if(CSVdetails != null)
+        {
+            newProg = new Programme(CSVdetails.get(0), CSVdetails.get(1), Integer.valueOf(CSVdetails.get(2)));
+        }
+        for(int i = 0; i < newProg.getProgYears(); i ++)
+        {
+            CSVdetails = readCSVline(x);
+            if(CSVdetails != null)
+            {
+                for(int j = 1; j < CSVdetails.size(); j++)
+                {
+                    courseModule temp = moduleLoadFromCSV(CSVdetails.get(j));
+                    if(temp != null)
+                    {
+                        newProg.addModule(Integer.valueOf(CSVdetails.get(0)), 1, temp);
+                    }
+                }          
+            }
+            
+            CSVdetails = readCSVline(x);
+            if(CSVdetails != null)
+            {
+                for(int j = 1; j < CSVdetails.size(); j++)
+                {
+                    courseModule temp = moduleLoadFromCSV(CSVdetails.get(j));
+                    if(temp != null)
+                    {
+                        newProg.addModule(Integer.valueOf(CSVdetails.get(0)), 2, temp);
+                    }
+                }
+            }
+        }
+        
+        x.close();
+        return newProg;
+    }
+    
     public static void facultySaveCSV(ArrayList<Faculty> allFac) throws IOException
     {
         String fileName = "Faculty.CSV";
@@ -171,6 +197,28 @@ public class testModule {
         System.out.println("Successfully wrote to the file.");
     }
     
+    public static courseModule moduleLoadFromCSV(String moduleCode) throws IOException,FileNotFoundException
+    {
+        courseModule newModule = null;
+        
+        BufferedReader x = new BufferedReader(new FileReader("allModules.csv"));
+        List<String> CSVdetails;
+        CSVdetails = readCSVline(x);
+        do {
+            CSVdetails = readCSVline(x);
+            if(CSVdetails != null && CSVdetails.get(0).equals(moduleCode))
+            {
+                newModule = new courseModule(CSVdetails.get(0), CSVdetails.get(1), Integer.valueOf(CSVdetails.get(2)));
+                
+                break;
+            }  
+        }
+        while(CSVdetails != null);
+        
+        x.close();
+        return newModule;
+    }
+
     public static Faculty facultyLoadFromCSV(String name) throws IOException,FileNotFoundException
     {
         Faculty Fac = null;
@@ -233,8 +281,25 @@ public class testModule {
                 System.out.println(modules.get(i));
             }
             System.out.println("\nEnter the Module Code to Grade or Review.");
-            String command = keyboard.nextLine().toUpperCase();
+            String moduleCode = keyboard.nextLine().toUpperCase();
             
+            Programme tempProg = programmeReadCSV("LM111.CSV");
+            if(tempProg.checkModuleInProg(moduleCode))
+            {
+                System.out.println(tempProg.getProgCode());
+            }
+            
+            tempProg = programmeReadCSV("LM123.CSV");
+            if(tempProg.checkModuleInProg(moduleCode))
+            {
+                System.out.println(tempProg.getProgCode());
+            }
+            
+            tempProg = programmeReadCSV("LM124.CSV");
+            if(tempProg.checkModuleInProg(moduleCode))
+            {
+                System.out.println(tempProg.getProgCode());
+            }
             
             /** 
             if (command.equals("S")) {
