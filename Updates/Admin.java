@@ -12,7 +12,7 @@ public class Admin {
 	private ArrayList<Programme> programmes;
 	private ArrayList<Faculty> faculties;
 	private Student newStudent;
-	private String output = "Desktop/output.csv";
+	private String output = "/Users/paudie/Desktop/output.csv";
 	
 /*  •	Create programmes/courses
 	•	Add modules
@@ -38,8 +38,8 @@ public class Admin {
         faculties.add(newFaculty);
     }
 	
-	public void createModule(String faculty, String moduleCode, String title, int creditValue) {
-		newModule = new Module(faculty, moduleCode, title, creditValue);
+	public void createModule(String moduleCode, String title, int creditValue) {
+		newModule = new Module(moduleCode, title, creditValue);
 	}
 	
 	public void addModule(String progCode, int progYear, int semester, courseModule newModule) {
@@ -68,37 +68,33 @@ public class Admin {
 	}
 	
 	public void getTranscript() {
-		try(BufferedWriter writer = new BufferedWriter(new FileWriter(output))) {
-			writer.write("User: " + username);
-			writer.newLine();
-			writer.write("Students: ");
-			writer.newLine();
-			for (Student student: students) {
-				writer.write(student.getStudentID() + "   " + student.getName());
-				writer.newLine();
-			}
-			
-			writer.write("Faculties: ");
-			writer.newLine();
-			for(Faculty faculty: faculties) {
-				writer.write(faculty.getName());
-				writer.newLine();
-			}
-			
-			writer.write("Courses: ");
-			writer.newLine();
-			for (Programme programme: programmes) {
-				writer.write(programme.getProgCode() + "   " + programme.getName());
-				writer.newLine();
-			
-			writer.close();
-			}
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(output))) {
+	        writer.write("User: " + username);
+	        writer.newLine();
+	        writer.write("Students: ");
+	        writer.newLine();
+	        for (Student student : students) {
+	            writer.write(student.getStudentID() + "   " + student.getName());
+	            writer.newLine();
+	        }
+
+	        writer.write("Faculties: ");
+	        writer.newLine();
+	        for (Faculty faculty : faculties) {
+	            writer.write(faculty.getName());
+	            writer.newLine();
+	        }
+
+	        writer.write("Courses: ");
+	        writer.newLine();
+	        for (Programme programme : programmes) {
+	            writer.write(programme.getProgCode() + "   " + programme.getName());
+	            writer.newLine();
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 	
 	
 }
-	
