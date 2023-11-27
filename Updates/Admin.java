@@ -63,6 +63,38 @@ public class Admin {
 	public void createStudent(String studentID, String name, String program, String department, int yearOfStudy) {
 		newStudent = new Student(studentID,name, program, department, yearOfStudy);
 	}
+
+	public void getTranscript() {
+		try(BufferedWriter writer = new BufferedWriter(new FileWriter(output))) {
+			writer.write("User: " + username);
+			writer.newLine();
+			writer.write("Students: ");
+			writer.newLine();
+			for (Student student: students) {
+				writer.write(student.getStudentID() + "   " + student.getName());
+				writer.newLine();
+			}
+			
+			writer.write("Faculties: ");
+			writer.newLine();
+			for(Faculty faculty: faculties) {
+				writer.write(faculty.getName());
+				writer.newLine();
+			}
+			
+			writer.write("Courses: ");
+			writer.newLine();
+			for (Programme programme: programmes) {
+				writer.write(programme.getProgCode() + "   " + programme.getName());
+				writer.newLine();
+			
+			writer.close();
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	
