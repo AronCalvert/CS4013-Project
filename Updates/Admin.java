@@ -12,6 +12,7 @@ public class Admin {
 	private ArrayList<Programme> programmes;
 	private ArrayList<Faculty> faculties;
 	private Student newStudent;
+	private String output = "Desktop/output.csv";
 	
 /*  •	Create programmes/courses
 	•	Add modules
@@ -28,6 +29,7 @@ public class Admin {
 	}
 	
 	public boolean login(String username, String password) {
+		this.username = username;
 		return (this.username.equals(username) && this.password.equals(password));
 	}
 	
@@ -62,8 +64,9 @@ public class Admin {
 	
 	public void createStudent(String studentID, String name, String program, String department, int yearOfStudy) {
 		newStudent = new Student(studentID,name, program, department, yearOfStudy);
+		students.add(newStudent);
 	}
-
+	
 	public void getTranscript() {
 		try(BufferedWriter writer = new BufferedWriter(new FileWriter(output))) {
 			writer.write("User: " + username);
@@ -95,7 +98,6 @@ public class Admin {
 			e.printStackTrace();
 		}
 	}
-	
 	
 	
 }
