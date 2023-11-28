@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=courseModule
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ courseModule\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=courseModule()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ courseModule\r\n
+comment2.params=moduleCode\ moduleName\ moduleCredits
+comment2.target=courseModule(java.lang.String,\ java.lang.String,\ int)
+comment2.text=\r\n\ Constructor\ for\ objects\ of\ class\ courseModule\r\n
+comment3.params=
+comment3.target=java.lang.String\ getModuleCode()
+comment4.params=
+comment4.target=java.lang.String\ getModuleName()
+comment5.params=
+comment5.target=int\ getModuleCredits()
+comment6.params=moduleCode
+comment6.target=void\ setModuleCode(java.lang.String)
+comment7.params=moduleName
+comment7.target=void\ setModuleName(java.lang.String)
+comment8.params=moduleCredits
+comment8.target=void\ setModuleCredits(int)
+comment9.params=
+comment9.target=java.lang.String\ getCourseModuleCSV()
+numComments=10

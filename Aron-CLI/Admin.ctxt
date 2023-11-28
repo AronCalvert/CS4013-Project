@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Admin
+comment1.params=
+comment1.target=Admin()
+comment2.params=username\ password
+comment2.target=boolean\ login(java.lang.String,\ java.lang.String)
+comment3.params=name\ department
+comment3.target=void\ createFaculty(java.lang.String,\ java.lang.String)
+comment4.params=moduleCode\ title\ creditValue
+comment4.target=void\ createModule(java.lang.String,\ java.lang.String,\ int)
+comment5.params=progCode\ progYear\ semester\ module
+comment5.target=void\ addModule(java.lang.String,\ int,\ int,\ courseModule)
+comment6.params=progCode\ progName\ numberOfYears
+comment6.target=void\ createProgramme(java.lang.String,\ java.lang.String,\ int)
+comment7.params=studentID\ name\ program\ department\ yearOfStudy
+comment7.target=void\ createStudent(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ int)
+comment8.params=
+comment8.target=void\ getTranscript()
+comment9.params=module
+comment9.target=courseModule\ convertToCourseModule(Module)
+numComments=10

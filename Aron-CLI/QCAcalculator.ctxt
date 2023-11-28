@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=QCAcalculator
+comment1.params=factor\ set
+comment1.target=double\ QCAcalculation(int,\ ModuleList)
+numComments=2
