@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.io.*;
+import java.util.List;
 
 /**
  * Write a description of class Programme here.
@@ -109,5 +110,20 @@ public class Programme
     
     public String getName() {
         return this.progName;
+    }
+    
+    public int getNumberOfYears(){
+        return this.numberOfYears;
+    }
+    
+    public List<courseModule> getModules() {
+        List<courseModule> allModules = new ArrayList<>();
+
+        for (programmeYear year : programmeYears) {
+            allModules.addAll(year.sem1); // Add all modules from the first semester
+            allModules.addAll(year.sem2); // Add all modules from the second semester
+        }
+
+        return allModules;
     }
 }

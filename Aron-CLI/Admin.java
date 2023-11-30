@@ -4,7 +4,7 @@ import java.util.*;
 public class Admin {
     private String username = "Uladmin123";
     private String password = "Password";
-    public Module newModule; 
+    public courseModule newModule; // Changed from Module to courseModule
     private String studentsFilepath;
     private String facultyFilepath;
     private Course course;
@@ -13,6 +13,7 @@ public class Admin {
     private ArrayList<Faculty> faculties;
     private Student newStudent;
     private String output = "/Users/paudie/Desktop/output.csv";
+    private ArrayList<programmeYear> programmeYears;
 
     Admin() {
         students = new ArrayList<Student>();
@@ -31,7 +32,7 @@ public class Admin {
     }
 
     public void createModule(String moduleCode, String title, int creditValue) {
-        newModule = new Module(moduleCode, title, creditValue);
+        newModule = new courseModule(moduleCode, title, creditValue, faculties);
     }
 
     public void addModule(String progCode, int progYear, int semester, courseModule module) {
@@ -43,7 +44,6 @@ public class Admin {
             }
         }
         if (selectedProgramme != null) {
-            // Assumes Programme class has a method to add a module
             selectedProgramme.addModule(progYear, semester, module);
         } else {
             System.out.println(progCode + " not found.");
@@ -89,11 +89,76 @@ public class Admin {
         }
     }
 
-    public courseModule convertToCourseModule(Module module) {
-        if (module == null) {
-            return null;
+    public void viewFaculties() {
+        for (Faculty faculty : faculties) {
+            System.out.println("Name: " + faculty.getName() + ", Department: " + faculty.getDepartment());
         }
-        return new courseModule(module.getCode(), module.getTitle(), module.getCreditValue());
     }
 
+    public void viewStudents() {
+        for (Student student : students) {
+            System.out.println("ID: " + student.getStudentID() + ", Name: " + student.getName() + ", Programme: " + student.getProgram());
+        }
+    }
+
+    public List<courseModule> getModules() {
+        List<courseModule> allModules = new ArrayList<>();
+
+        for (programmeYear year : programmeYears) {
+            allModules.addAll(year.sem1);
+            allModules.addAll(year.sem2); 
+        }
+
+        return allModules;
+    }
+
+    public void viewProgrammes() {
+        if (programmes.isEmpty()) {
+            System.out.println("No programmes available.");
+            return;
+        }
+
+        System.out.println("List of Programmes:");
+        for (Programme programme : programmes) {
+            String progCode = programme.getProgCode();
+            String progName = programme.getName();
+            int numberOfYears = programme.getNumberOfYears();
+
+            System.out.println("Programme Code: " + progCode + ", Name: " + progName + ", Duration: " + numberOfYears + " years");
+
+            // Optionally, you can also print the modules for each year of the programme
+            List<courseModule> modules = programme.getModules();
+            for (courseModule module : modules) {
+                System.out.println("\tModule: " + module.getModuleCode() + " - " + module.getModuleName());
+            }
+        }
+    }
+
+    public Student getStudentById(String studentId) {
+        for (Student student : students) {
+            if (student.getStudentID().equals(studentId)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    public void assignModuleToFaculty(String facultyName, courseModule module) {
+        for (Faculty faculty : faculties) {
+            if (faculty.getName().equals(facultyName)) {
+                faculty.assignModule(module);
+                break;
+            }
+        }
+    }
+
+    public Faculty getFacultyByName(String facultyName) {
+        for (Faculty faculty : faculties) {
+            if (faculty.getName().equals(facultyName)) {
+                return faculty;
+            }
+        }
+        return null; // Return null if the faculty is not found
+
+    }
 }

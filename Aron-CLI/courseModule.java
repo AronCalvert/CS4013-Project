@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Write a description of class courseModule here.
@@ -11,6 +13,7 @@ public class courseModule
     private String moduleCode;
     private String moduleName;
     private int moduleCredits;
+    private List<Faculty> assignedFaculties;
 
     /**
      * Constructor for objects of class courseModule
@@ -28,6 +31,13 @@ public class courseModule
         this.moduleCode = new String(moduleCode);
         this.moduleName = new String(moduleName);
         this.moduleCredits = moduleCredits;
+    }
+    
+    public courseModule(String moduleCode, String moduleName, int moduleCredits, List<Faculty> faculties) {
+        this.moduleCode = new String(moduleCode);
+        this.moduleName = new String(moduleName);
+        this.moduleCredits = moduleCredits;
+        this.assignedFaculties = new ArrayList<>(faculties);
     }
     
     public String getModuleCode()
@@ -66,5 +76,13 @@ public class courseModule
         String CSV = moduleCode + "," + moduleName + "," + credits;
         
         return CSV;
+    }
+    
+     public List<Faculty> getAssignedFaculties() {
+        return assignedFaculties;
+    }
+    
+    public void setAssignedFaculties(List<Faculty> faculties) {
+        this.assignedFaculties = faculties;
     }
 }
