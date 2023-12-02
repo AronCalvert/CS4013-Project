@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-
+/*
 public class MainApplication {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -85,7 +85,7 @@ public class MainApplication {
                     int semester = scanner.nextInt();
 
                     // Convert Module to courseModule before adding
-                    courseModule cm = admin.convertToCourseModule(admin.newModule);
+                    courseModule cm = admin.getNewModule();
                     if (cm != null) {
                         admin.addModule(progCode, progYear, semester, cm);
                         System.out.println("Module added to programme successfully.");
@@ -150,4 +150,4 @@ public class MainApplication {
         }
     }
 }
-
+*/

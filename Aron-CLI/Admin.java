@@ -4,7 +4,7 @@ import java.util.*;
 public class Admin {
     private String username = "Uladmin123";
     private String password = "Password";
-    public courseModule newModule; // Changed from Module to courseModule
+    private courseModule newModule; // Changed from Module to courseModule
     private String studentsFilepath;
     private String facultyFilepath;
     private Course course;
@@ -54,7 +54,18 @@ public class Admin {
         Programme newProgramme = new Programme(progCode, progName, numberOfYears);
         programmes.add(newProgramme);
     }
-
+    
+    public Programme getProgramme(String progCode) {
+        Programme selectedProgramme = null;
+        for (Programme programme : programmes) {
+            if (programme.getProgCode().equals(progCode)) {
+                selectedProgramme = programme;
+                break;
+            }
+        }
+        return selectedProgramme;
+    }
+    
     public void createStudent(String studentID, String name, String program, String department, int yearOfStudy) {
         newStudent = new Student(studentID, name, program, department, yearOfStudy);
         students.add(newStudent);
@@ -146,7 +157,7 @@ public class Admin {
     public void assignModuleToFaculty(String facultyName, courseModule module) {
         for (Faculty faculty : faculties) {
             if (faculty.getName().equals(facultyName)) {
-                faculty.assignModule(module);
+                faculty.addModule(module.getModuleCode());
                 break;
             }
         }
@@ -160,5 +171,11 @@ public class Admin {
         }
         return null; // Return null if the faculty is not found
 
+    }
+    
+    public courseModule getNewModule()
+    {
+        courseModule Module = new courseModule(newModule.getModuleCode(), newModule.getModuleName(), newModule.getModuleCredits());
+        return Module;
     }
 }

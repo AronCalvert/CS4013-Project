@@ -12,12 +12,14 @@ public class Faculty
     // instance variables - replace the example below with your own
     private String name;
     private String department;
-    private List<courseModule> assignedModules;
+    private ArrayList<String> moduleCodes;
+    //private List<courseModule> assignedModules;
 
     public Faculty(String name, String department) {
-        this.name = name;
-        this.department = department;
-        this.assignedModules = new ArrayList<>();
+        this.name = new String(name);
+        this.department = new String(department);
+        moduleCodes = new ArrayList<String>();
+        //this.assignedModules = new ArrayList<>();
     }
     
     public String getName()
@@ -30,37 +32,39 @@ public class Faculty
         return department;
     }
 
-    //public void addModule(String moduleCode)
-    //{
-    //    moduleCodes.add(moduleCode);
-    //}
+    public void addModule(String moduleCode)
+    {
+        moduleCodes.add(moduleCode);
+    }
     
-    //public ArrayList<String> getModules()
-    //{
-    //    return moduleCodes;
-    //}
+    public ArrayList<String> getModules()
+    {
+        return moduleCodes;
+    }
     
-    // /public String getCSVString()
-    //{
-    //    String facCSV = new String();
-     //   facCSV += name + "," + department + ",";
-     //   for(int i = 0; i < moduleCodes.size(); i ++)
-     //   {
-     //       facCSV += moduleCodes.get(i);
-     //       if(i != moduleCodes.size() - 1)
-     //       {
-     //           facCSV += ",";
-     //       }
-     //   }
-    //    facCSV += "\n";
-    //    return facCSV;
-    //}
+    public String getCSVString()
+    {
+        String facCSV = new String();
+       facCSV += name + "," + department + ",";
+       for(int i = 0; i < moduleCodes.size(); i ++)
+       {
+           facCSV += moduleCodes.get(i);
+           if(i != moduleCodes.size() - 1)
+           {
+               facCSV += ",";
+           }
+       }
+       facCSV += "\n";
+       return facCSV;
+    }
     
+    /**
     public void assignModule(courseModule module) {
         this.assignedModules.add(module);
     }
-
+    
     public List<courseModule> getAssignedModules() {
         return assignedModules;
     }
+    */
 }

@@ -1,9 +1,11 @@
 import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class CommandLineInterface {
     static Admin admin = new Admin();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         boolean mainExit = false;
         while (!mainExit) {
@@ -15,6 +17,7 @@ public class CommandLineInterface {
             System.out.println("4. Exit");
 
             int choice = scanner.nextInt();
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -38,7 +41,7 @@ public class CommandLineInterface {
         scanner.close();
     }
 
-    private static void handleAdminOperations(Scanner scanner) {
+    private static void handleAdminOperations(Scanner scanner) throws IOException {
         System.out.println("Please enter admin username:");
         String username = scanner.next();
         System.out.println("Please enter admin password:");
@@ -138,6 +141,7 @@ public class CommandLineInterface {
                     // Add the courseModule to the programme
                     admin.addModule(progCode, progYear, semester, cm);
                     System.out.println("Module added to programme successfully.");
+                    programmeSaveCSV(admin.getProgramme(progCode));
                     break;
 
                 case 4: // Create Programme
@@ -206,36 +210,67 @@ public class CommandLineInterface {
         }
     }
 
-    private static void handleFacultyOperations(Scanner scanner) {
-        scanner.next();
-        System.out.println("Enter Faculty Name:");
-        String facultyName = scanner.next();
-        Faculty faculty = admin.getFacultyByName(facultyName);
-        if (faculty == null) {
-            System.out.println("Faculty not found.");
-            return;
-        }
-
+    private static void handleFacultyOperations(Scanner keyboard) throws IOException {
+        //Scanner keyboard = new Scanner(System.in);
+        boolean facultyFound = false;
         boolean exit = false;
-        while (!exit) {
+        Faculty facultyDetails = null;
+        
+        do{
+            System.out.println(new String(new char[50]).replace("\0", "\r\n")); //clear console
+            System.out.printf("Enter Faculty Name to Continue: ");
+            String name = keyboard.nextLine();
+            facultyDetails = facultyLoadFromCSV(name);
+            if(facultyDetails !=null )
+            {
+                facultyFound = true;
+                System.out.println("Welcome " + facultyDetails.getName() +  "\n");
+                //System.out.printf(facultyDetails.getCSVString());
+            }
+            else
+            {
+                System.out.println("Name not found!");
+                System.out.println("Press 'X' to exit or 'Enter' to continue.");
+                String command = keyboard.nextLine().toUpperCase();
+                if(command.equals("X")){
+                    exit = true;
+                }
+            }
+        }
+        while((facultyFound == false)&&(exit == false));
+        
+        
+        while (exit==false) {
+            
             System.out.println("Choose an operation:");
             System.out.println("1. View assigned modules");
             System.out.println("2. Assign grades to students");
             System.out.println("3. Exit");
 
-            int operationChoice = scanner.nextInt();
+            int operationChoice = keyboard.nextInt();
             switch (operationChoice) {
                 case 1:
-                    for (courseModule module : faculty.getAssignedModules()) {
-                        System.out.println("Module: " + module.getModuleName());
+                {
+                    System.out.println("Your assigned modules are: ");
+                    ArrayList<String> modules = facultyDetails.getModules();
+                    for(int i = 0; i < modules.size(); i ++)
+                    {
+                        System.out.println(modules.get(i));
                     }
                     break;
+                }
                 case 2:
+                {
                     // Implement grade assignment functionality here
-                    break;
+                    break; 
+                }
+
                 case 3:
+                {
                     exit = true;
                     break;
+                }
+                
                 default:
                     System.out.println("Invalid choice. Try again.");
             }
@@ -269,5 +304,58 @@ public class CommandLineInterface {
                     System.out.println("Invalid choice. Try again.");
             }
         }
+    }
+    
+    public static Faculty facultyLoadFromCSV(String name) throws IOException,FileNotFoundException
+    {
+        Faculty Fac = null;
+        
+        BufferedReader x = new BufferedReader(new FileReader("Faculty.CSV"));
+        List<String> CSVdetails;
+        CSVdetails = readCSVline(x);
+        do {
+            CSVdetails = readCSVline(x);
+            if(CSVdetails != null && CSVdetails.get(0).equals(name))
+            {
+                Fac = new Faculty(CSVdetails.get(0), CSVdetails.get(1));
+                for(int i = 2; i < CSVdetails.size(); i++)
+                {
+                    Fac.addModule(CSVdetails.get(i));
+                }
+                break;
+            }  
+        }
+        while(CSVdetails != null);
+        
+        x.close();
+        return Fac;
+    }
+    
+    public static List<String> readCSVline(BufferedReader x) throws IOException
+    {
+        String line;
+        List<String> parts = null;
+        if((line = x.readLine()) != null)
+        {
+           parts = new ArrayList<>(List.of(line.split(",")));
+        }
+        return parts;            
+    }
+    
+    public static void programmeSaveCSV(Programme programme) throws IOException
+    {
+        String fileName = programme.getProgCode() + ".CSV";
+        String CSVout = programme.getProgrammeCSV();
+        FileWriter myWriter = new FileWriter(fileName);
+        try
+        {
+            myWriter.write(CSVout);
+        }
+        catch (IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+        myWriter.close();
+        System.out.println("Successfully wrote to the file.");
     }
 }
