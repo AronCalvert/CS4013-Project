@@ -61,8 +61,8 @@ public class CommandLineInterface {
             System.out.println("Choose an operation:");
             System.out.println("1. Create Faculty");
             System.out.println("2. Assign Module to Faculty");
-            System.out.println("3. Add Module to Programme");
-            System.out.println("4. Create Programme");
+            System.out.println("3. Create Programme");
+            System.out.println("4. Add Module to Programme");
             System.out.println("5. Create Student");
             System.out.println("6. Get Transcript");
             System.out.println("7. View Faculties");
@@ -85,6 +85,7 @@ public class CommandLineInterface {
                     facultySaveCSV(admin.getFaculty());
                     break;
                 }
+                
                 case 2: // Assign Module to faculty
                 {
                     System.out.println("Enter module code:");
@@ -112,7 +113,28 @@ public class CommandLineInterface {
                     }
                     break;
                 }
-                case 3: // Add Module to Programme
+                
+                case 3: // Create Programme
+                {
+                    System.out.println("Enter programme code:");
+                    String programmeCode = scanner.nextLine();
+                    System.out.println("Enter programme name:");
+                    String programmeName = scanner.nextLine();
+                    System.out.println("Enter number of years:");
+                    int numberOfYears;
+                    try {
+                        numberOfYears = Integer.parseInt(scanner.nextLine());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input for number of years. Please enter a number.");
+                        continue;
+                    }
+                    admin.createProgramme(programmeCode, programmeName, numberOfYears);
+                    System.out.println("Programme created successfully.");
+                    programmeSaveCSV(admin.getProgramme(programmeCode));
+                    break;
+                }
+                
+                case 4: // Add Module to Programme
                 {
                     System.out.println("Enter programme code:");
                     String progCode = scanner.nextLine();
@@ -137,45 +159,16 @@ public class CommandLineInterface {
 
                     // Inputs for creating courseModule
                     System.out.println("Enter module code:");
-                    String moduleCode1 = scanner.nextLine();
-                    System.out.println("Enter module title:");
-                    String moduleTitle = scanner.nextLine();
-                    System.out.println("Enter credit value:");
-                    int moduleCreditValue;
-                    try {
-                        moduleCreditValue = Integer.parseInt(scanner.nextLine());
-                    } catch (NumberFormatException e) {
-                        System.out.println("Invalid input for credit value. Please enter a number.");
-                        continue;
-                    }
-
-                    // Create a courseModule instance
-                    courseModule cm = new courseModule(moduleCode1, moduleTitle, moduleCreditValue);
-
+                    String moduleCode = scanner.nextLine();
+                    courseModule newMod = moduleLoadFromCSV(moduleCode);
+                    
                     // Add the courseModule to the programme
-                    admin.addModule(progCode, progYear, semester, cm);
+                    admin.addModule(progCode, progYear, semester, newMod);
                     System.out.println("Module added to programme successfully.");
                     programmeSaveCSV(admin.getProgramme(progCode));
                     break;
                 }
-                case 4: // Create Programme
-                {
-                    System.out.println("Enter programme code:");
-                    String programmeCode = scanner.nextLine();
-                    System.out.println("Enter programme name:");
-                    String programmeName = scanner.nextLine();
-                    System.out.println("Enter number of years:");
-                    int numberOfYears;
-                    try {
-                        numberOfYears = Integer.parseInt(scanner.nextLine());
-                    } catch (NumberFormatException e) {
-                        System.out.println("Invalid input for number of years. Please enter a number.");
-                        continue;
-                    }
-                    admin.createProgramme(programmeCode, programmeName, numberOfYears);
-                    System.out.println("Programme created successfully.");
-                    break;
-                }
+
                 case 5: // Create Student
                 {
                     System.out.println("Enter student ID:");
@@ -186,14 +179,19 @@ public class CommandLineInterface {
 
                     System.out.println("Enter programme code:");
                     String program = scanner.nextLine(); // Read the entire line
-                    //TODO adam, fix prog details
-                    //Programme programme = new Programme(program, "", 0);
-                    Programme programme = programmeReadCSV("XY123");
+                    
+                    Programme programme = programmeReadCSV(program);
+                    
+                    System.out.println("Enter year of registration:");
+                    int yearOfReg;
+                    try {
+                        yearOfReg = Integer.parseInt(scanner.nextLine()); // Parse the integer from the line
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input for year of registration. Please enter a number.");
+                        continue; // Go back to the start of the loop to retry
+                    }
 
-                    System.out.println("Enter department:");
-                    String studentDepartment = scanner.nextLine(); // Read the entire line
-
-                    System.out.println("Enter year of study:");
+                    System.out.println("Enter year of study (1..4): ");
                     int yearOfStudy;
                     try {
                         yearOfStudy = Integer.parseInt(scanner.nextLine()); // Parse the integer from the line
@@ -202,20 +200,22 @@ public class CommandLineInterface {
                         continue; // Go back to the start of the loop to retry
                     }
 
-                    //TODO adam, fix regYear
-                    admin.createStudent(studentID, studentName, programme, yearOfStudy, 0);
-                    Student newStudent = new Student(studentID, studentName, programme, yearOfStudy, 0);
+                    
+                    admin.createStudent(studentID, studentName, programme, yearOfStudy, yearOfReg);
+                    Student newStudent = new Student(studentID, studentName, programme, yearOfStudy, yearOfReg);
                     studentSaveCSV(newStudent);
                     System.out.println("Student created successfully.");
                     
                     break;
                 }
+                
                 case 6: // Get Transcript
                 {
                     admin.getTranscript();
                     System.out.println("Transcript generated successfully.");
                     break;
                 }
+                
                 case 7: // View Faculties
                 {
                     admin.viewFaculties();
@@ -399,7 +399,7 @@ public class CommandLineInterface {
             ioe.printStackTrace();
         }
         myWriter.close();
-        System.out.println("Successfully wrote to the file.");
+        //System.out.println("Successfully wrote to the file.");
     }
     
     /**
