@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Faculty
+comment0.text=\r\n\ Represents\ Faculty\ member\r\n\ View\ prog\ and\ module\ assigned\ to\ them\r\n\ View\ list\ of\ students\ assigned\ to\ each\ module\r\n\ Assign\ grades\ to\ individual\ students\r\n\ \r\n
+comment1.params=name\ department
+comment1.target=Faculty(java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Faculty\r\n\ @param\ name\ \ name\ of\ faculty\ member\r\n\ @param\ department\ \ \ \ that\ faculty\ member\ belongs\ to\r\n
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment2.text=\r\n\ Gets\ the\ name\ of\ the\ faculty\ member\r\n\ @return\ name\ \ \r\n
+comment3.params=
+comment3.target=java.lang.String\ getDepartment()
+comment3.text=\r\n\ Gets\ the\ department\ of\ the\ faculty\ member\r\n\ @return\ department\ \r\n
+comment4.params=module
+comment4.target=void\ assignModules(courseModule)
+comment5.params=
+comment5.target=java.util.List\ getAssignedModules()
+numComments=6

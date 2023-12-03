@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=programmeYear
+comment0.text=\r\n\ Class\ to\ represent\ the\ year\ of\ a\ programme\r\n\ There\ is\ 2\ semesters\ in\ a\ year\r\n
+comment1.params=
+comment1.target=programmeYear()
+comment1.text=\r\n\ Constructors\ to\ create\ programmeYear\ object\ with\ two\ semsters\r\n
+numComments=2

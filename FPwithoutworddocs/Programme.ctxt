@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Programme
+comment0.text=\r\n\ Class\ to\ represent\ a\ college\ Course\r\n
+comment1.params=progCode\ progName\ numberOfYears
+comment1.target=Programme(java.lang.String,\ java.lang.String,\ int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Programme\r\n\ @param\ progCode\r\n\ @param\ progName\r\n\ @param\ numberOfYears\r\n
+comment2.params=moduleCode
+comment2.target=boolean\ checkModuleInProg(java.lang.String)
+comment2.text=\r\n\ Method\ to\ check\ if\ a\ module\ is\ a\ part\ of\ a\ course\r\n\ @param\ moduleCode\r\n\ @return\ result\ \ true\ if\ module\ is\ present\ in\ programme,\ false\ if\ not\r\n
+comment3.params=
+comment3.target=java.lang.String\ getProgrammeCSV()
+comment3.text=\r\n\ Gets\ CSV\ file\ of\ the\ courses\ in\ the\ college\r\n\ @return\ progCSV\r\n
+comment4.params=progYear\ semester\ newModule
+comment4.target=void\ addModule(int,\ int,\ courseModule)
+comment4.text=\r\n\ Method\ to\ add\ a\ module\ to\ course\r\n\ @param\ progYear\r\n\ @param\ semester\r\n\ @param\ newMoudle\ \ of\ type\ courseModule\r\n
+comment5.params=
+comment5.target=java.lang.String\ getProgCode()
+comment5.text=\r\n\ Gets\ course\ code\r\n\ @return\ progCode\r\n
+comment6.params=
+comment6.target=int\ getNumberOfYears()
+comment6.text=\r\n\ Gets\ number\ of\ years\ the\ course\ is\r\n\ @return\ numberOfYears\r\n
+comment7.params=
+comment7.target=java.util.List\ getModules()
+comment8.params=
+comment8.target=java.lang.String\ getName()
+comment8.text=\r\n\ Gets\ name\ of\ course\r\n\ @return\ progName\r\n
+numComments=9

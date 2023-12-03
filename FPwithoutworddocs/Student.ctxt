@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Student
+comment0.text=\r\n\ Class\ to\ represent\ a\ Student\ in\ a\ college\r\n
+comment1.params=studentID\ name\ program\ department\ yearOfStudy
+comment1.target=Student(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ int)
+comment1.text=\r\n\ Constructor\ to\ create\ Student\ object\r\n\ @param\ studentID\r\n\ @param\ name\r\n\ @param\ program\r\n\ @param\ department\r\n\ @param\ yearOfStudy\r\n
+comment2.params=moduleCode\ grade
+comment2.target=void\ addGrade(java.lang.String,\ double)
+comment2.text=\r\n\ Method\ to\ add\ a\ grade\ of\ the\ student\ of\ a\ particular\ module\r\n\ @param\ moduleCode\r\n\ @param\ grade\r\n
+comment3.params=
+comment3.target=double\ calculateQCA()
+comment3.text=\r\n\ Method\ to\ calculate\ QCA\r\n\ @return\ \ grades.size()\ >\ 0\ ?\ totalGrades\ /\ grades.size()\ \:\ 0;\ \ (QCA)\r\n
+comment4.params=
+comment4.target=void\ viewTranscript()
+comment4.text=\r\n\ Method\ to\ view\ transcript\ of\ particular\ student\r\n
+comment5.params=
+comment5.target=boolean\ checkProgression()
+comment5.text=\r\n\ Method\ to\ check\ current\ QCA\ if\ still\ progressing\ in\ your\ course\r\n\ @return\ qca\ >\=2.0\r\n
+comment6.params=
+comment6.target=java.lang.String\ getStudentID()
+comment6.text=\r\n\ Gets\ student\ id\ number\r\n\ @return\ this.studentID\r\n
+comment7.params=
+comment7.target=java.lang.String\ getName()
+comment7.text=\r\n\ Gets\ name\ of\ student\r\n\ @return\ this.name\r\n
+numComments=8

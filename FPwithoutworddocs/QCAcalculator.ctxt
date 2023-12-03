@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=QCAcalculator
+comment0.text=\r\n\ Class\ to\ calculate\ the\ QCA\ of\ a\ student\r\n
+comment1.params=factor\ set
+comment1.target=double\ QCAcalculation(int,\ studentsModuleList)
+comment1.text=\r\n\ Method\ to\ calulate\ QCA\r\n\ @param\ factor\ \ the\ weight\ of\ the\ year\r\n\ @param\ set\ \ the\ list\ of\ module\ for\ a\ particular\ student\r\n\ @return\ (qcs\ /\ (attemptedHours\ -\ nonQualityHours))\ \ \ \ \ a.k.a\ QCA\r\n
+numComments=2

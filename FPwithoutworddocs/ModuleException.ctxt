@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=ModuleException
+comment1.params=reason
+comment1.target=ModuleException(java.lang.String)
+numComments=2
