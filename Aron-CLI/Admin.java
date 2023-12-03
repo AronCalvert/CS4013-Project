@@ -4,7 +4,7 @@ import java.util.*;
 public class Admin {
     private String username = "Uladmin123";
     private String password = "Password";
-    private courseModule newModule; // Changed from Module to courseModule
+    //private courseModule newModule; // Changed from Module to courseModule
     private String studentsFilepath;
     private String facultyFilepath;
     private Course course;
@@ -30,11 +30,25 @@ public class Admin {
         Faculty newFaculty = new Faculty(name, department);
         faculties.add(newFaculty);
     }
-
+    
+    //adam
+    public void addFaculty(Faculty newFac)
+    {
+        faculties.add(newFac);
+    }
+    
+    //adam
+    public ArrayList<Faculty> getFaculty()
+    {
+        return faculties;
+    }
+    
+    /*
     public void createModule(String moduleCode, String title, int creditValue) {
         newModule = new courseModule(moduleCode, title, creditValue);
     }
-
+    */
+   
     public void addModule(String progCode, int progYear, int semester, courseModule module) {
         Programme selectedProgramme = null;
         for (Programme programme : programmes) {
@@ -173,9 +187,11 @@ public class Admin {
 
     }
     
+    /*
     public courseModule getNewModule()
     {
         courseModule Module = new courseModule(newModule.getModuleCode(), newModule.getModuleName(), newModule.getModuleCredits());
         return Module;
     }
+    */
 }

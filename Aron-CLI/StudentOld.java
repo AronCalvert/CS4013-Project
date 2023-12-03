@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.io.*;
 
-public class Student {
+public class StudentOld {
     private String studentID;
     private String name;
     private String program;
@@ -11,7 +11,7 @@ public class Student {
     private HashMap<String, Double> grades;
     private String output = "Desktop/output.csv";
 
-    public Student(String studentID, String name, String program, String department, int yearOfStudy) {
+    public StudentOld(String studentID, String name, String program, String department, int yearOfStudy) {
         this.studentID = studentID;
         this.name = name;
         this.program = program;

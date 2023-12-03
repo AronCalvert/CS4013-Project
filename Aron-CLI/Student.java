@@ -70,7 +70,7 @@ public class Student {
     {    
         String studCSV = new String();
             
-        studCSV += studentID + "," + name + "," + programme.getProgCode() + "," + programme.getName() + "," + String.valueOf(regYear) + "," + String.valueOf(yearOfStudy) + "\n";
+        studCSV += studentID + "," + name + "," + programme.getProgCode() + "," + programme.getName() + "," + String.valueOf(yearOfStudy) + "," + String.valueOf(regYear) + "\n";
 
             for(int i = 0; i < programme.getNumberOfYears(); i++)
             {
@@ -98,4 +98,5 @@ public class Student {
             }             
         return studCSV;
     }
+    
 }

@@ -8,6 +8,9 @@ public class CommandLineInterface {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         boolean mainExit = false;
+        //initialised list of faculty from CSV.
+        facultyLoadFromCSV();
+        
         while (!mainExit) {
             System.out.println("Welcome to the University Management System");
             System.out.println("Please choose your role:");
@@ -57,7 +60,7 @@ public class CommandLineInterface {
         while (!exit) {
             System.out.println("Choose an operation:");
             System.out.println("1. Create Faculty");
-            System.out.println("2. Create Module");
+            System.out.println("2. Assign Module to Faculty");
             System.out.println("3. Add Module to Programme");
             System.out.println("4. Create Programme");
             System.out.println("5. Create Student");
@@ -68,38 +71,49 @@ public class CommandLineInterface {
             System.out.println("10. Exit");
 
             int operationChoice = scanner.nextInt();
+            scanner.nextLine();
             switch (operationChoice) {
 
                 case 1: // Create Faculty
-                    scanner.nextLine();
+                {
                     System.out.println("Enter faculty name:");
                     String name = scanner.nextLine();
                     System.out.println("Enter faculty department:");
                     String department = scanner.nextLine();
                     admin.createFaculty(name, department);
                     System.out.println("Faculty created successfully.");
+                    facultySaveCSV(admin.getFaculty());
                     break;
-
-                case 2: // Create Module
-                    scanner.nextLine();
+                }
+                case 2: // Assign Module to faculty
+                {
                     System.out.println("Enter module code:");
                     String moduleCode = scanner.nextLine();
-                    System.out.println("Enter module title:");
-                    String title = scanner.nextLine();
-                    System.out.println("Enter credit value:");
-                    int creditValue;
-                    try {
-                        creditValue = Integer.parseInt(scanner.nextLine());
-                    } catch (NumberFormatException e) {
-                        System.out.println("Invalid input for credit value. Please enter a number.");
-                        continue;
+                    courseModule newFacMod = moduleLoadFromCSV(moduleCode);
+                    if(newFacMod != null)
+                    {
+                        System.out.println("Enter faculty name:");
+                        String name = scanner.nextLine();
+                        ArrayList<Faculty> allFac = admin.getFaculty();
+              
+                        for (Faculty fac : allFac)
+                        {   
+                            if(fac.getName().equals(name))
+                            {
+                                fac.addModule(moduleCode);
+                                facultySaveCSV(admin.getFaculty());
+                                System.out.println("Module added successfully.");
+                            }
+                        }
                     }
-                    admin.createModule(moduleCode, title, creditValue);
-                    System.out.println("Module created successfully.");
+                    else
+                    {
+                        System.out.println("Module not found");
+                    }
                     break;
-
+                }
                 case 3: // Add Module to Programme
-                    scanner.nextLine();
+                {
                     System.out.println("Enter programme code:");
                     String progCode = scanner.nextLine();
 
@@ -112,7 +126,7 @@ public class CommandLineInterface {
                         continue;
                     }
 
-                    System.out.println("Enter semester:");
+                    System.out.println("Enter semester (1 or 2):");
                     int semester;
                     try {
                         semester = Integer.parseInt(scanner.nextLine());
@@ -143,9 +157,9 @@ public class CommandLineInterface {
                     System.out.println("Module added to programme successfully.");
                     programmeSaveCSV(admin.getProgramme(progCode));
                     break;
-
+                }
                 case 4: // Create Programme
-                    scanner.nextLine();
+                {
                     System.out.println("Enter programme code:");
                     String programmeCode = scanner.nextLine();
                     System.out.println("Enter programme name:");
@@ -161,8 +175,9 @@ public class CommandLineInterface {
                     admin.createProgramme(programmeCode, programmeName, numberOfYears);
                     System.out.println("Programme created successfully.");
                     break;
+                }
                 case 5: // Create Student
-                    scanner.nextLine();
+                {
                     System.out.println("Enter student ID:");
                     String studentID = scanner.nextLine(); // Read the entire line
 
@@ -194,23 +209,33 @@ public class CommandLineInterface {
                     System.out.println("Student created successfully.");
                     
                     break;
-
+                }
                 case 6: // Get Transcript
+                {
                     admin.getTranscript();
                     System.out.println("Transcript generated successfully.");
                     break;
+                }
                 case 7: // View Faculties
+                {
                     admin.viewFaculties();
                     break;
+                }
                 case 8: // View Students
+                {
                     admin.viewStudents();
                     break;
+                }
                 case 9: // View Programmes
+                {
                     admin.viewProgrammes();
                     break;
+                }
                 case 10: // Exit
+                {
                     exit = true;
                     break;
+                }
                 default:
                     System.out.println("Invalid choice. Try again.");
             }
@@ -265,20 +290,41 @@ public class CommandLineInterface {
             System.out.println("3. Exit");
 
             int operationChoice = keyboard.nextInt();
+            keyboard.nextLine();
             switch (operationChoice) {
                 case 1:
                 {
+                    System.out.println(new String(new char[60]).replace("\0", "-")); //add header
                     System.out.println("Your assigned modules are: ");
                     ArrayList<String> modules = facultyDetails.getModules();
                     for(int i = 0; i < modules.size(); i ++)
                     {
-                        System.out.println(modules.get(i));
+                        courseModule tempMod = moduleLoadFromCSV(modules.get(i));
+                        System.out.println(tempMod.getCourseModuleCSV().replace(",", "\t"));
                     }
+                    System.out.println(new String(new char[60]).replace("\0", "-")); //add footer
                     break;
                 }
                 case 2:
                 {
-                    // Implement grade assignment functionality here
+                    System.out.println("Enter desired student ID: ");
+                    String studentID = keyboard.nextLine().toUpperCase();
+                    //scanner.nextLine();
+                    System.out.println("Enter Module Code: ");
+                    String moduleCode = keyboard.nextLine().toUpperCase();
+                    System.out.println("Year of study: ");
+                    String year = keyboard.nextLine().toUpperCase();
+                    System.out.println("Semester (1 or 2): ");
+                    String semester = keyboard.nextLine().toUpperCase();
+                    System.out.println("Enter the grade achieved: ");
+                    String grade = keyboard.nextLine().toUpperCase();
+                    
+                    Student existingStudent = studentReadCSV(studentID);
+                    if(existingStudent != null)
+                    {
+                        existingStudent.getProgramme().setModuleGrade(Integer.valueOf(year), Integer.valueOf(semester), moduleCode, grade);
+                        studentSaveCSV(existingStudent);
+                    }
                     break; 
                 }
 
@@ -309,7 +355,7 @@ public class CommandLineInterface {
             System.out.println("1. View transcript");
             System.out.println("2. Exit");
             int operationChoice = scanner.nextInt();
-
+            scanner.nextLine();
             switch (operationChoice) {
                 case 1:
                     //student.viewTranscript();
@@ -335,7 +381,7 @@ public class CommandLineInterface {
      */
     public static void facultySaveCSV(ArrayList<Faculty> allFac) throws IOException
     {
-        String fileName = "Faculty.CSV";
+        String fileName = "Admin\\Faculty.CSV";
         
         FileWriter myWriter = new FileWriter(fileName);
         try
@@ -370,7 +416,7 @@ public class CommandLineInterface {
     {
         Faculty Fac = null;
         
-        BufferedReader x = new BufferedReader(new FileReader("Faculty.CSV"));
+        BufferedReader x = new BufferedReader(new FileReader("Admin\\Faculty.CSV"));
         List<String> CSVdetails;
         CSVdetails = readCSVline(x);
         do {
@@ -383,6 +429,41 @@ public class CommandLineInterface {
                     Fac.addModule(CSVdetails.get(i));
                 }
                 break;
+            }  
+        }
+        while(CSVdetails != null);
+        
+        x.close();
+        return Fac;
+    }
+    
+    /**
+     * facultyFindInCSV finds a single faculty in CSV file, "Faculty.CSV".
+     *
+     * @param String name, name of faculty member to find.
+     * 
+     * @return Faculty, Details for faculty member if found, null if not found.
+     * 
+     * @author (Adam Fogarty, 22367748)
+     * @version (1.0)
+     */
+    public static Faculty facultyLoadFromCSV() throws IOException,FileNotFoundException
+    {
+        Faculty Fac = null;
+        
+        BufferedReader x = new BufferedReader(new FileReader("Admin\\Faculty.CSV"));
+        List<String> CSVdetails;
+        CSVdetails = readCSVline(x);
+        do {
+            CSVdetails = readCSVline(x);
+            if(CSVdetails != null)
+            {
+                Fac = new Faculty(CSVdetails.get(0), CSVdetails.get(1));
+                for(int i = 2; i < CSVdetails.size(); i++)
+                {
+                    Fac.addModule(CSVdetails.get(i));
+                }
+                admin.addFaculty(Fac);
             }  
         }
         while(CSVdetails != null);
@@ -424,35 +505,8 @@ public class CommandLineInterface {
      */
     public static void programmeSaveCSV(Programme programme) throws IOException
     {
-        String fileName = programme.getProgCode() + ".CSV";
+        String fileName = "Programmes\\" + programme.getProgCode() + ".CSV";
         String CSVout = programme.getProgrammeCSV();
-        FileWriter myWriter = new FileWriter(fileName);
-        try
-        {
-            myWriter.write(CSVout);
-        }
-        catch (IOException ioe)
-        {
-            ioe.printStackTrace();
-        }
-        myWriter.close();
-        System.out.println("Successfully wrote to the file.");
-    }
-    
-    /**
-     * studentSaveCSV saves student details to a CSV file named "'StudentID'.CSV".
-     *
-     * @param Student student, object containing details to save.
-     * 
-     * @return VOID.
-     * 
-     * @author (Adam Fogarty, 22367748)
-     * @version (1.0)
-     */
-    public static void studentSaveCSV(Student student) throws IOException
-    {
-        String fileName = student.getStudentID() + ".CSV";
-        String CSVout = student.getStudentCSV();
         FileWriter myWriter = new FileWriter(fileName);
         try
         {
@@ -476,10 +530,10 @@ public class CommandLineInterface {
      * @author (Adam Fogarty, 22367748)
      * @version (1.0)
      */
-    public static Programme programmeReadCSV(String FileName) throws IOException,FileNotFoundException
+    public static Programme programmeReadCSV(String progCode) throws IOException,FileNotFoundException
     {
         Programme newProg = null;
-        BufferedReader x = new BufferedReader(new FileReader(FileName + ".CSV"));
+        BufferedReader x = new BufferedReader(new FileReader("Programmes\\" + progCode + ".CSV"));
         List<String> CSVdetails;
         CSVdetails = readCSVline(x);
         if(CSVdetails != null)
@@ -520,6 +574,71 @@ public class CommandLineInterface {
     }
     
     /**
+     * studentSaveCSV saves student details to a CSV file named "'StudentID'.CSV".
+     *
+     * @param Student student, object containing details to save.
+     * 
+     * @return VOID.
+     * 
+     * @author (Adam Fogarty, 22367748)
+     * @version (1.0)
+     */
+    public static void studentSaveCSV(Student student) throws IOException
+    {
+        String fileName = "Students\\" + student.getStudentID() + ".CSV";
+        String CSVout = student.getStudentCSV();
+        FileWriter myWriter = new FileWriter(fileName);
+        try
+        {
+            myWriter.write(CSVout);
+        }
+        catch (IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+        myWriter.close();
+        System.out.println("Successfully wrote to the file.");
+    }
+    
+    /**
+     * programmeReadCSV reads programme details from a named CSV file.
+     *
+     * @param String FileName, name of file to read from.
+     * 
+     * @return Programme, object containing programme details, null if not found.
+     * 
+     * @author (Adam Fogarty, 22367748)
+     * @version (1.0)
+     */
+    public static Student studentReadCSV(String studentID) throws IOException,FileNotFoundException
+    {
+        Student newStudent = null;
+        BufferedReader x = new BufferedReader(new FileReader("Students\\" + studentID + ".CSV"));
+        List<String> CSVdetails;
+        CSVdetails = readCSVline(x);
+        if(CSVdetails != null)
+        {
+            Programme newProg = programmeReadCSV(CSVdetails.get(2));
+            if(newProg!=null)
+            {
+                newStudent = new Student(CSVdetails.get(0), CSVdetails.get(1), newProg, Integer.valueOf(CSVdetails.get(4)), Integer.valueOf(CSVdetails.get(5)));
+                
+                do {
+                    CSVdetails = readCSVline(x);
+                    if(CSVdetails != null)
+                    {
+                        newStudent.getProgramme().setModuleGrade(Integer.valueOf(CSVdetails.get(0)), Integer.valueOf(CSVdetails.get(1)), CSVdetails.get(2), CSVdetails.get(5));
+                    }  
+                }
+                while(CSVdetails != null);
+            }
+        }
+
+        x.close();
+        return newStudent;
+    }
+    
+    /**
      * moduleLoadFromCSV loads courseModule details from a CSV file named "allModules.CSV".
      *
      * @param String moduleCode, name of module to find and load.
@@ -533,7 +652,7 @@ public class CommandLineInterface {
     {
         courseModule newModule = null;
         
-        BufferedReader x = new BufferedReader(new FileReader("allModules.CSV"));
+        BufferedReader x = new BufferedReader(new FileReader("Admin\\allModules.CSV"));
         List<String> CSVdetails;
         CSVdetails = readCSVline(x);
         do {

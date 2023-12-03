@@ -1,5 +1,5 @@
 Name,Department,Modules
-John Doe,Business,MS4043,MS4613
-Jane Doe,Arts,AC4004,CS4013,MS4403
+John Doe,Business,CS4013,MS4043,MS4035,MS4613,MS4403
+Jane Doe,Arts,AC4004,CS4013,MS4403,MS4043
 Bill Gates,Mathematics,AC1234,BE5678
 John Cena,Business,MS1789,AC5612,EM5123

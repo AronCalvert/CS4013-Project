@@ -131,4 +131,25 @@ public class Programme
 
         return allModules;
     }
+    
+    public void setModuleGrade(int courseYear, int semester, String moduleCode, String grade)
+    {
+        ArrayList<gradedCourseModule> semesterModules = null;
+        if(semester == 1)
+        {
+            semesterModules = programmeYears.get(courseYear - 1).sem1;
+        }
+        else
+        {
+            semesterModules = programmeYears.get(courseYear - 1).sem2;
+        }
+        
+        for(gradedCourseModule mod : semesterModules)
+        {
+            if(mod.getModuleCode().equals(moduleCode))
+            {
+                mod.setGrade(grade); 
+            }
+        }
+    }
 }
