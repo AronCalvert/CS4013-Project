@@ -169,8 +169,11 @@ public class CommandLineInterface {
                     System.out.println("Enter student name:");
                     String studentName = scanner.nextLine(); // Read the entire line
 
-                    System.out.println("Enter program:");
+                    System.out.println("Enter programme code:");
                     String program = scanner.nextLine(); // Read the entire line
+                    //TODO adam, fix prog details
+                    //Programme programme = new Programme(program, "", 0);
+                    Programme programme = programmeReadCSV("XY123");
 
                     System.out.println("Enter department:");
                     String studentDepartment = scanner.nextLine(); // Read the entire line
@@ -184,8 +187,12 @@ public class CommandLineInterface {
                         continue; // Go back to the start of the loop to retry
                     }
 
-                    admin.createStudent(studentID, studentName, program, studentDepartment, yearOfStudy);
+                    //TODO adam, fix regYear
+                    admin.createStudent(studentID, studentName, programme, yearOfStudy, 0);
+                    Student newStudent = new Student(studentID, studentName, programme, yearOfStudy, 0);
+                    studentSaveCSV(newStudent);
                     System.out.println("Student created successfully.");
+                    
                     break;
 
                 case 6: // Get Transcript
@@ -210,6 +217,16 @@ public class CommandLineInterface {
         }
     }
 
+    /**
+     * handleFacultyOperations displays the faculty menu.
+     * 
+     * @param Scanner keyboard, input. 
+     * 
+     * @return VOID.
+     * 
+     * @author (Adam Fogarty, 22367748);(Aron Calvert, 22370374)
+     * @version (2.0)
+     */
     private static void handleFacultyOperations(Scanner keyboard) throws IOException {
         //Scanner keyboard = new Scanner(System.in);
         boolean facultyFound = false;
@@ -220,7 +237,7 @@ public class CommandLineInterface {
             System.out.println(new String(new char[50]).replace("\0", "\r\n")); //clear console
             System.out.printf("Enter Faculty Name to Continue: ");
             String name = keyboard.nextLine();
-            facultyDetails = facultyLoadFromCSV(name);
+            facultyDetails = facultyFindInCSV(name);
             if(facultyDetails !=null )
             {
                 facultyFound = true;
@@ -295,7 +312,7 @@ public class CommandLineInterface {
 
             switch (operationChoice) {
                 case 1:
-                    student.viewTranscript();
+                    //student.viewTranscript();
                     break;
                 case 2:
                     exit = true;
@@ -306,7 +323,50 @@ public class CommandLineInterface {
         }
     }
     
-    public static Faculty facultyLoadFromCSV(String name) throws IOException,FileNotFoundException
+    /**
+     * facultySaveCSV writes all faculty details to CSV file, "Faculty.CSV".
+     * 
+     * @param ArrayList<Faculty> allFac, ArrayList containing all faculty in university.
+     * 
+     * @return VOID.
+     * 
+     * @author (Adam Fogarty, 22367748)
+     * @version (1.0)
+     */
+    public static void facultySaveCSV(ArrayList<Faculty> allFac) throws IOException
+    {
+        String fileName = "Faculty.CSV";
+        
+        FileWriter myWriter = new FileWriter(fileName);
+        try
+        {
+            String CSVout = new String("Name,Department,Modules" + "\n");
+            myWriter.write(CSVout);
+            for(int i = 0; i < allFac.size(); i ++)
+            {
+                CSVout = allFac.get(i).getCSVString();
+                myWriter.write(CSVout);
+            }
+        }
+        catch (IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+        myWriter.close();
+        System.out.println("Successfully wrote to the file.");
+    }
+    
+    /**
+     * facultyFindInCSV finds a single faculty in CSV file, "Faculty.CSV".
+     *
+     * @param String name, name of faculty member to find.
+     * 
+     * @return Faculty, Details for faculty member if found, null if not found.
+     * 
+     * @author (Adam Fogarty, 22367748)
+     * @version (1.0)
+     */
+    public static Faculty facultyFindInCSV(String name) throws IOException,FileNotFoundException
     {
         Faculty Fac = null;
         
@@ -331,6 +391,16 @@ public class CommandLineInterface {
         return Fac;
     }
     
+    /**
+     * readCSVline reads a single line from a CSV file and splits into a list of strings.
+     *
+     * @param BufferedReader x, stream to read CSV line from.
+     * 
+     * @return List<String>, line read from CSV broken into individual strings, null if not read.
+     * 
+     * @author (Adam Fogarty, 22367748)
+     * @version (1.0)
+     */
     public static List<String> readCSVline(BufferedReader x) throws IOException
     {
         String line;
@@ -342,6 +412,16 @@ public class CommandLineInterface {
         return parts;            
     }
     
+    /**
+     * programmeSaveCSV saves programme details to a CSV file named "'ProgCode'.CSV".
+     *
+     * @param Programme programme, object containing details to save.
+     * 
+     * @return VOID.
+     * 
+     * @author (Adam Fogarty, 22367748)
+     * @version (1.0)
+     */
     public static void programmeSaveCSV(Programme programme) throws IOException
     {
         String fileName = programme.getProgCode() + ".CSV";
@@ -357,5 +437,117 @@ public class CommandLineInterface {
         }
         myWriter.close();
         System.out.println("Successfully wrote to the file.");
+    }
+    
+    /**
+     * studentSaveCSV saves student details to a CSV file named "'StudentID'.CSV".
+     *
+     * @param Student student, object containing details to save.
+     * 
+     * @return VOID.
+     * 
+     * @author (Adam Fogarty, 22367748)
+     * @version (1.0)
+     */
+    public static void studentSaveCSV(Student student) throws IOException
+    {
+        String fileName = student.getStudentID() + ".CSV";
+        String CSVout = student.getStudentCSV();
+        FileWriter myWriter = new FileWriter(fileName);
+        try
+        {
+            myWriter.write(CSVout);
+        }
+        catch (IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+        myWriter.close();
+        System.out.println("Successfully wrote to the file.");
+    }
+    
+    /**
+     * programmeReadCSV reads programme details from a named CSV file.
+     *
+     * @param String FileName, name of file to read from.
+     * 
+     * @return Programme, object containing programme details, null if not found.
+     * 
+     * @author (Adam Fogarty, 22367748)
+     * @version (1.0)
+     */
+    public static Programme programmeReadCSV(String FileName) throws IOException,FileNotFoundException
+    {
+        Programme newProg = null;
+        BufferedReader x = new BufferedReader(new FileReader(FileName + ".CSV"));
+        List<String> CSVdetails;
+        CSVdetails = readCSVline(x);
+        if(CSVdetails != null)
+        {
+            newProg = new Programme(CSVdetails.get(0), CSVdetails.get(1), Integer.valueOf(CSVdetails.get(2)));
+        }
+        for(int i = 0; i < newProg.getNumberOfYears(); i ++)
+        {
+            CSVdetails = readCSVline(x);
+            if(CSVdetails != null)
+            {
+                for(int j = 1; j < CSVdetails.size(); j++)
+                {
+                    courseModule temp = moduleLoadFromCSV(CSVdetails.get(j));
+                    if(temp != null)
+                    {
+                        newProg.addModule(Integer.valueOf(CSVdetails.get(0)), 1, temp);
+                    }
+                }          
+            }
+            
+            CSVdetails = readCSVline(x);
+            if(CSVdetails != null)
+            {
+                for(int j = 1; j < CSVdetails.size(); j++)
+                {
+                    courseModule temp = moduleLoadFromCSV(CSVdetails.get(j));
+                    if(temp != null)
+                    {
+                        newProg.addModule(Integer.valueOf(CSVdetails.get(0)), 2, temp);
+                    }
+                }
+            }
+        }
+        
+        x.close();
+        return newProg;
+    }
+    
+    /**
+     * moduleLoadFromCSV loads courseModule details from a CSV file named "allModules.CSV".
+     *
+     * @param String moduleCode, name of module to find and load.
+     * 
+     * @return courseModule, object containing module details, null if not found.
+     * 
+     * @author (Adam Fogarty, 22367748)
+     * @version (1.0)
+     */
+    public static courseModule moduleLoadFromCSV(String moduleCode) throws IOException,FileNotFoundException
+    {
+        courseModule newModule = null;
+        
+        BufferedReader x = new BufferedReader(new FileReader("allModules.CSV"));
+        List<String> CSVdetails;
+        CSVdetails = readCSVline(x);
+        do {
+            CSVdetails = readCSVline(x);
+            if(CSVdetails != null && CSVdetails.get(0).equals(moduleCode))
+            {
+                newModule = new courseModule(CSVdetails.get(0), CSVdetails.get(1), Integer.valueOf(CSVdetails.get(2)));
+                
+                break;
+            }  
+        }
+        while(CSVdetails != null);
+        
+        x.close();
+        return newModule;
     }
 }

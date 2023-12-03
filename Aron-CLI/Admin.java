@@ -32,7 +32,7 @@ public class Admin {
     }
 
     public void createModule(String moduleCode, String title, int creditValue) {
-        newModule = new courseModule(moduleCode, title, creditValue, faculties);
+        newModule = new courseModule(moduleCode, title, creditValue);
     }
 
     public void addModule(String progCode, int progYear, int semester, courseModule module) {
@@ -66,8 +66,8 @@ public class Admin {
         return selectedProgramme;
     }
     
-    public void createStudent(String studentID, String name, String program, String department, int yearOfStudy) {
-        newStudent = new Student(studentID, name, program, department, yearOfStudy);
+    public void createStudent(String studentID, String name, Programme programme, int yearOfStudy,int regYear) {
+        newStudent = new Student(studentID, name, programme, yearOfStudy, regYear);
         students.add(newStudent);
     }
 
@@ -108,7 +108,7 @@ public class Admin {
 
     public void viewStudents() {
         for (Student student : students) {
-            System.out.println("ID: " + student.getStudentID() + ", Name: " + student.getName() + ", Programme: " + student.getProgram());
+            System.out.println("ID: " + student.getStudentID() + ", Name: " + student.getName() + ", Programme: " + student.getProgramme());
         }
     }
 

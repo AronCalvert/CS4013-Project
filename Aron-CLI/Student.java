@@ -1,82 +1,101 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.io.*;
 
 public class Student {
     private String studentID;
     private String name;
-    private String program;
-    private String department;
+    private Programme programme;
     private int yearOfStudy;
-    private HashMap<String, Double> grades;
-    private String output = "Desktop/output.csv";
+    private int regYear;
 
-    public Student(String studentID, String name, String program, String department, int yearOfStudy) {
+    public Student(String studentID, String name, Programme programme, int yearOfStudy, int regYear) {
         this.studentID = studentID;
         this.name = name;
-        this.program = program;
-        this.department = department;
+        this.programme = programme;
         this.yearOfStudy = yearOfStudy;
-        this.grades = new HashMap<>();
+        this.regYear = regYear;
     }
 
-    public void addGrade(String moduleCode, double grade) {
-        grades.put(moduleCode, grade);
+    public String getStudentID()
+    {
+        return studentID;
     }
-
-    public double calculateQCA() {
-        double totalGrades = 0;
-        for (double grade : grades.values()) {
-            totalGrades += grade;
-        }
-        return grades.size() > 0 ? totalGrades / grades.size() : 0;
+    
+    public void setStudentID(String studentID)
+    {
+        this.studentID = studentID;
     }
-
-    public void viewTranscript() {
-        System.out.println("Transcript for " + name);
-        for (String module : grades.keySet()) {
-            System.out.println("Module: " + module + ", Grade: " + grades.get(module));
-        }
+    
+    public String getName()
+    {
+        return name;
     }
-
-    public boolean checkProgression() {
-        double qca = calculateQCA();
-        return qca >= 2.0;
+    
+    public void setName(String name)
+    {
+        this.name = name;
     }
-
-    public String getStudentID() {
-        return this.studentID;
+    
+    public Programme getProgramme()
+    {
+        return programme;
     }
-
-    public String getName() {
-        return this.name;
+    
+    public void setProgramme(Programme programme)
+    {
+        this.programme = programme;
     }
-
-    public String getProgram(){
-        return this.program;
+    
+    public int getYearOfStudy()
+    {
+        return yearOfStudy;
     }
-
-    public int getYearOfStudy(){
-        return this.yearOfStudy;
+    
+    public void setYearOfStudy(int yearOfStudy)
+    {
+        this.yearOfStudy = yearOfStudy;
     }
-
-    public void getTranscript() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(output))) {
-            writer.write("Student Transcript");
-            writer.newLine();
-            writer.newLine();
-            writer.write("Name: " + this.name);
-            writer.newLine();
-            writer.write("Student ID: " + this.studentID);
-            writer.newLine();
-            writer.newLine();
-            for (Map.Entry<String, Double> entry : grades.entrySet()) {
-                writer.write("Module: " + entry.getKey() + ", Grade: " + entry.getValue());
-                writer.newLine();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    
+    public int getRegYear()
+    {
+        return regYear;
     }
+    
+    public void setRegYear(int regYear)
+    {
+        this.regYear = regYear;
+    }
+    
+    public String getStudentCSV()
+    {    
+        String studCSV = new String();
+            
+        studCSV += studentID + "," + name + "," + programme.getProgCode() + "," + programme.getName() + "," + String.valueOf(regYear) + "," + String.valueOf(yearOfStudy) + "\n";
 
+            for(int i = 0; i < programme.getNumberOfYears(); i++)
+            {
+                ArrayList<programmeYear> programmeYears = programme.getProgYears();
+                programmeYear year = programmeYears.get(i);
+                
+                String moduleDetails = new String();
+                    for(int j = 0; j < year.sem1.size(); j++)
+                    {
+                        gradedCourseModule module = year.sem1.get(j);
+                        moduleDetails += module.getCourseModuleCSV();
+                        studCSV += String.valueOf(i + 1) + "," + "1," + moduleDetails + "\n";
+                        moduleDetails = "";
+                    }
+                
+               
+                    for(int j = 0; j < year.sem2.size(); j++)
+                    {
+                        gradedCourseModule module = year.sem2.get(j);
+                        moduleDetails += module.getCourseModuleCSV();
+                        studCSV += String.valueOf(i + 1) + "," + "2," + moduleDetails + "\n";
+                        moduleDetails = "";
+                    }
+                
+            }             
+        return studCSV;
+    }
 }

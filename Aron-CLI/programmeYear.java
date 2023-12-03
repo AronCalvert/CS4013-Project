@@ -9,13 +9,13 @@ import java.util.ArrayList;
  */
 public class programmeYear
 {
-    public ArrayList<courseModule> sem1;
-    public ArrayList<courseModule> sem2;
+    public ArrayList<gradedCourseModule> sem1;
+    public ArrayList<gradedCourseModule> sem2;
     
     public programmeYear()
     {
-        sem1 = new ArrayList<courseModule>();
-        sem2 = new ArrayList<courseModule>();
+        sem1 = new ArrayList<gradedCourseModule>();
+        sem2 = new ArrayList<gradedCourseModule>();
         
     }
 }

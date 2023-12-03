@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=gradedCourseModule
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ gradedCourseModule\ here.\r\n\r\n\ @author\ (Adam\ Fogarty,\ 22367748)\r\n\ @version\ (1.0)\r\n
+comment1.params=
+comment1.target=gradedCourseModule()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ gradedCourseModule\r\n
+comment2.params=moduleCode\ moduleName\ moduleCredits\ grade
+comment2.target=gradedCourseModule(java.lang.String,\ java.lang.String,\ int,\ java.lang.String)
+comment3.params=moduleCode\ moduleName\ moduleCredits
+comment3.target=gradedCourseModule(java.lang.String,\ java.lang.String,\ int)
+comment4.params=course
+comment4.target=gradedCourseModule(courseModule)
+comment5.params=
+comment5.target=java.lang.String\ getGrade()
+comment6.params=grade
+comment6.target=void\ setGrade(java.lang.String)
+comment7.params=
+comment7.target=java.lang.String\ getCourseModuleCSV()
+numComments=8

@@ -61,14 +61,14 @@ public class Programme
     public void addModule(int progYear, int semester, courseModule newModule)
     {
         programmeYear year = programmeYears.get(progYear -1);
-        
+        gradedCourseModule gradedModule = new gradedCourseModule(newModule);
         if(semester == 1)
         {
-            year.sem1.add(newModule);
+            year.sem1.add(gradedModule);
         }
         else
         {
-            year.sem2.add(newModule);
+            year.sem2.add(gradedModule);
         }
     }
     
@@ -114,6 +114,11 @@ public class Programme
     
     public int getNumberOfYears(){
         return this.numberOfYears;
+    }
+    
+    public ArrayList<programmeYear> getProgYears()
+    {
+        return programmeYears;
     }
     
     public List<courseModule> getModules() {
