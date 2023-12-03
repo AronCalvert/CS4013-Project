@@ -1,3 +1,4 @@
+/*
 @SuppressWarnings("serial")
 public class ModuleException extends RuntimeException
 {
@@ -6,3 +7,4 @@ public class ModuleException extends RuntimeException
       super(reason);
    }
 } 
+*/

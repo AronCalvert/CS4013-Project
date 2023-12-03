@@ -16,4 +16,6 @@ comment6.params=grade
 comment6.target=void\ setGrade(java.lang.String)
 comment7.params=
 comment7.target=java.lang.String\ getCourseModuleCSV()
-numComments=8
+comment8.params=
+comment8.target=java.lang.String\ getCourseModuleText()
+numComments=9

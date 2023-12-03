@@ -211,8 +211,15 @@ public class CommandLineInterface {
                 
                 case 6: // Get Transcript
                 {
-                    admin.getTranscript();
-                    System.out.println("Transcript generated successfully.");
+                    System.out.println("Enter student ID:");
+                    String studentID = scanner.nextLine(); // Read the entire line
+                    Student student = studentReadCSV(studentID);
+                    if (student == null) {
+                        System.out.println("Student not found.");
+                        return;
+                    }
+                    getTranscript(student);
+                    System.out.println(getTranscript(student));
                     break;
                 }
                 
@@ -287,7 +294,8 @@ public class CommandLineInterface {
             System.out.println("Choose an operation:");
             System.out.println("1. View assigned modules");
             System.out.println("2. Assign grades to students");
-            System.out.println("3. Exit");
+            System.out.println("3. View student transcript");
+            System.out.println("4. Exit");
 
             int operationChoice = keyboard.nextInt();
             keyboard.nextLine();
@@ -327,12 +335,29 @@ public class CommandLineInterface {
                     }
                     break; 
                 }
+                
+                case 3: // Get Transcript
+                {
+                    System.out.println("Enter student ID:");
+                    String studentID = keyboard.nextLine(); // Read the entire line
+                    
+                    Student student = studentReadCSV(studentID);
+                    if (student == null) {
+                        System.out.println("Student not found.");
+                        return;
+                    }
+                    getTranscript(student);
+                    System.out.println(getTranscript(student));
+                    break;
+                }
 
-                case 3:
+                case 4:
                 {
                     exit = true;
                     break;
                 }
+                
+                
                 
                 default:
                     System.out.println("Invalid choice. Try again.");
@@ -340,10 +365,11 @@ public class CommandLineInterface {
         }
     }
 
-    private static void handleStudentOperations(Scanner scanner) {
+    private static void handleStudentOperations(Scanner scanner) throws IOException {
         System.out.println("Enter Student ID:");
         String studentId = scanner.next();
-        Student student = admin.getStudentById(studentId);
+        //Student student = admin.getStudentById(studentId);
+        Student student = studentReadCSV(studentId);
         if (student == null) {
             System.out.println("Student not found.");
             return;
@@ -358,11 +384,16 @@ public class CommandLineInterface {
             scanner.nextLine();
             switch (operationChoice) {
                 case 1:
-                    //student.viewTranscript();
+                {
+                    getTranscript(student);
+                    System.out.println(getTranscript(student));
                     break;
+                }
+                
                 case 2:
                     exit = true;
                     break;
+                    
                 default:
                     System.out.println("Invalid choice. Try again.");
             }
@@ -668,5 +699,58 @@ public class CommandLineInterface {
         
         x.close();
         return newModule;
+    }
+    
+    /**
+     * getTranscript 
+     *
+     * @param String moduleCode, name of module to find and load.
+     * 
+     * @return courseModule, object containing module details, null if not found.
+     * 
+     * @author (Adam Fogarty, 22367748)
+     * @version (1.0)
+     */
+    public static String getTranscript(Student student)
+    {
+        String transcript = new String(new char[80]).replace("\0", "-");
+        transcript += "\n";
+        
+        transcript += "Name: " + student.getName() + "\n";
+        transcript += "Student ID: " + student.getStudentID() + "\n";
+        transcript += "Programme of Study: " + student.getProgramme().getProgCode() + "\t" + student.getProgramme().getName() + "\n"; 
+        transcript += "Year of Registration: " + student.getRegYear() + "\n";
+        transcript += "Current Year of Study: " + student.getYearOfStudy() + "\n";
+        Programme programme = student.getProgramme();
+        
+            for(int i = 0; i < programme.getNumberOfYears(); i++)
+            {
+                ArrayList<programmeYear> programmeYears = programme.getProgYears();
+                programmeYear year = programmeYears.get(i);
+                
+                String moduleDetails = new String(new char[80]).replace("\0", "-");
+                moduleDetails += "\n";
+                moduleDetails += "Academic Year " + (i + student.getRegYear()) + "\n";
+                moduleDetails += "Semester 1" + "\n";
+                    for(int j = 0; j < year.sem1.size(); j++)
+                    {
+                        gradedCourseModule module = year.sem1.get(j);
+                        moduleDetails += module.getCourseModuleText();
+                        transcript += moduleDetails + "\n";
+                        moduleDetails = "";
+                    }
+                
+                moduleDetails += "Semester 2" + "\n";
+                    for(int j = 0; j < year.sem2.size(); j++)
+                    {
+                        gradedCourseModule module = year.sem2.get(j);
+                        moduleDetails += module.getCourseModuleText();
+                        transcript += moduleDetails + "\n";
+                        moduleDetails = "";
+                    }
+                
+            }             
+        transcript += new String(new char[80]).replace("\0", "-");
+        return transcript;
     }
 }

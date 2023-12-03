@@ -82,6 +82,15 @@ public class courseModule
         return CSV;
     }
     
+    public String getCourseModuleText()
+    {
+        String credits = String.format("%d",moduleCredits);
+        String padding = new String(new char[55 - moduleName.length()]).replace("\0", " ");
+        String CSV = moduleCode + "\t" + moduleName + padding + "\t" + credits;
+        
+        return CSV;
+    }
+    
     /*
      * removed by Adam, not needed in class.
      public List<Faculty> getAssignedFaculties() {

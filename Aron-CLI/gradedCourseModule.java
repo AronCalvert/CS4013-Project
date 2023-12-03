@@ -51,4 +51,11 @@ public class gradedCourseModule extends courseModule
         
         return CSV;
     }
+    
+    public String getCourseModuleText()
+    {
+        String CSV = super.getCourseModuleText() + "\t" + grade;
+        
+        return CSV;
+    }
 }

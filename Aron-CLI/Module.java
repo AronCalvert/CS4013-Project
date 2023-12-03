@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-
+/*
 public class Module {
     String code;
     String title;
@@ -8,14 +8,14 @@ public class Module {
     String grade;
     
     public Module() {
-    	
+        
     }
     
     
     public Module(String code, String title, int creditValue) {
-    	this.code = code;
-    	this.title =title;
-    	this.creditValue = creditValue;
+        this.code = code;
+        this.title =title;
+        this.creditValue = creditValue;
     }
     
     public void moduleInfo(String moduleCode, String grade, String fac) {
@@ -41,8 +41,8 @@ public class Module {
                 fac = "src/CS4013ModuleCodeFiles/ul-admin.csv";
                 break;
             default:
-            	System.out.println("Error: Please enter a valid faculty");
-            	break;
+                System.out.println("Error: Please enter a valid faculty");
+                break;
         }
 
         try {
@@ -71,26 +71,27 @@ public class Module {
                 throw new ModuleException("This module is not in the selected faculty");
             }
         } catch (Exception e) {
-       		e.printStackTrace();
-       	}
+               e.printStackTrace();
+           }
         
        
 
     }
 
-	public String getCode() {
-		return code;
-	}
+    public String getCode() {
+        return code;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public int getCreditValue() {
-		return creditValue;
-	}
+    public int getCreditValue() {
+        return creditValue;
+    }
 
-	public String getGrade() {
-		return grade;
-	}
+    public String getGrade() {
+        return grade;
+    }
 }
+*/

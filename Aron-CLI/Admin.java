@@ -7,7 +7,7 @@ public class Admin {
     //private courseModule newModule; // Changed from Module to courseModule
     private String studentsFilepath;
     private String facultyFilepath;
-    private Course course;
+    //private Course course;
     private ArrayList<Student> students;
     private ArrayList<Programme> programmes; 
     private ArrayList<Faculty> faculties;
@@ -85,7 +85,7 @@ public class Admin {
         students.add(newStudent);
     }
 
-    public void getTranscript() {
+    /*public void getTranscript() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(output))) {
             writer.write("User: " + username);
             writer.newLine();
@@ -112,7 +112,7 @@ public class Admin {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public void viewFaculties() {
         for (Faculty faculty : faculties) {
