@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Student
+comment1.params=studentID\ name\ programme\ yearOfStudy\ regYear
+comment1.target=Student(java.lang.String,\ java.lang.String,\ Programme,\ int,\ int)
+comment10.params=
+comment10.target=int\ getRegYear()
+comment11.params=regYear
+comment11.target=void\ setRegYear(int)
+comment12.params=
+comment12.target=java.lang.String\ getStudentCSV()
+comment2.params=
+comment2.target=java.lang.String\ getStudentID()
+comment3.params=studentID
+comment3.target=void\ setStudentID(java.lang.String)
+comment4.params=
+comment4.target=java.lang.String\ getName()
+comment5.params=name
+comment5.target=void\ setName(java.lang.String)
+comment6.params=
+comment6.target=Programme\ getProgramme()
+comment7.params=programme
+comment7.target=void\ setProgramme(Programme)
+comment8.params=
+comment8.target=int\ getYearOfStudy()
+comment9.params=yearOfStudy
+comment9.target=void\ setYearOfStudy(int)
+numComments=13

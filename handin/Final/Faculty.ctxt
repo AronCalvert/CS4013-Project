@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Faculty
+comment0.text=\r\n\ \r\n\ View\ prog\ and\ module\ assigned\ to\ them\r\n\ View\ list\ of\ students\ assigned\ to\ each\ module\r\n\ Assign\ grades\ to\ individual\ students\r\n\ \r\n
+comment1.params=name\ department
+comment1.target=Faculty(java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=
+comment3.target=java.lang.String\ getDepartment()
+comment4.params=moduleCode
+comment4.target=void\ addModule(java.lang.String)
+comment5.params=
+comment5.target=java.util.ArrayList\ getModules()
+comment6.params=
+comment6.target=java.lang.String\ getCSVString()
+numComments=7
