@@ -3,6 +3,7 @@ Launching the Application:
 Main Menu:
         You will see options to select your role (Student, Faculty, Admin) or to exit the application.
         Select the appropriate number (1-4) and press Enter.
+	For testing purposes use StudentID = "123456789".
 
 Role-Based Operations
 For Students

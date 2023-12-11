@@ -2,10 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Write a description of class courseModule here.
+ * The courseModule class represents a course module with informationsuch as module code, module name, and module credits.
+ * 
+ * Instances of this class can be used to store and retrieve information about individual course modules.
+ * 
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Adam Fogarty, 22367748);(Paudie Kelly, 22342842);(Ella Curtin, 22363564);(Aron Calvert, 22370374)
+ * @version (3.0)
  */
 public class courseModule
 {
@@ -16,7 +19,7 @@ public class courseModule
     //private List<Faculty> assignedFaculties;
 
     /**
-     * Constructor for objects of class courseModule
+     * Default constructor for objects of class courseModule.
      */
     public courseModule()
     {
@@ -24,7 +27,11 @@ public class courseModule
     }
 
     /**
-     * Constructor for objects of class courseModule
+     * Parameterized constructor for objects of class courseModule.
+     * 
+     * @param moduleCode    The code of the course module.
+     * @param moduleName    The name of the course module.
+     * @param moduleCredits The credit hours associated with the course module.
      */
     public courseModule(String moduleCode, String moduleName, int moduleCredits)
     {
@@ -43,37 +50,71 @@ public class courseModule
         }
     */
     
-    
+    /**
+     * Gets the module code.
+     * 
+     * @return The module code.
+     */
     public String getModuleCode()
     {
         return moduleCode;
     }
     
+    /**
+     * Gets the module name.
+     * 
+     * @return The module name.
+     */
     public String getModuleName()
     {
         return moduleName;
     }
     
+    /**
+     * Gets the module credits.
+     * 
+     * @return The module credits.
+     */
     public int getModuleCredits()
     {
         return moduleCredits;
     }
     
+    /**
+     * Sets the module code.
+     * 
+     * @param moduleCode The new module code.
+     */
     public void setModuleCode(String moduleCode)
     {
         this.moduleCode = new String(moduleCode);
     }
     
+    /**
+     * Sets the module name.
+     * 
+     * @param moduleName The new module name.
+     */
     public void setModuleName(String moduleName)
     {
         this.moduleName = new String(moduleName);
     }
     
+    /**
+     * Sets the module credits.
+     * 
+     * @param moduleCredits The new module credits.
+     */
     public void setModuleCredits(int moduleCredits)
     {
         this.moduleCredits = moduleCredits;
     }
     
+    /**
+     * Generates a CSV representation of the course module.
+     * 
+     * @return A CSV string representing the course module.
+     */
     public String getCourseModuleCSV()
     {
         String credits = String.format("%d",moduleCredits);
@@ -82,6 +123,11 @@ public class courseModule
         return CSV;
     }
     
+    /**
+     * Generates a formatted text representation of the course module.
+     * 
+     * @return A formatted text string representing the course module.
+     */
     public String getCourseModuleText()
     {
         String credits = String.format("%d",moduleCredits);

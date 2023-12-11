@@ -1,0 +1,176 @@
+Project documentation
+<---- javadoc command: ---->
+C:\Program Files\BlueJ\jdk\bin\javadoc.exe
+-sourcepath
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final
+-source
+17
+-classpath
+C:\Program Files\BlueJ\lib\bluejcore.jar;C:\Program Files\BlueJ\lib\junit-jupiter-5.5.2.jar;C:\Program Files\BlueJ\lib\junit-jupiter-api-5.5.2.jar;C:\Program Files\BlueJ\lib\junit-jupiter-engine-5.5.2.jar;C:\Program Files\BlueJ\lib\junit-jupiter-migrationsupport-5.5.2.jar;C:\Program Files\BlueJ\lib\junit-jupiter-params-5.5.2.jar;C:\Program Files\BlueJ\lib\junit-platform-commons-1.5.2.jar;C:\Program Files\BlueJ\lib\junit-platform-console-1.5.2.jar;C:\Program Files\BlueJ\lib\junit-platform-console-standalone-1.5.2.jar;C:\Program Files\BlueJ\lib\junit-platform-engine-1.5.2.jar;C:\Program Files\BlueJ\lib\junit-platform-launcher-1.5.2.jar;C:\Program Files\BlueJ\lib\junit-platform-reporting-1.5.2.jar;C:\Program Files\BlueJ\lib\junit-platform-runner-1.5.2.jar;C:\Program Files\BlueJ\lib\junit-platform-suite-api-1.5.2.jar;C:\Program Files\BlueJ\lib\junit-platform-testkit-1.5.2.jar;C:\Program Files\BlueJ\lib\junit-quickcheck-core-0.9.jar;C:\Program Files\BlueJ\lib\junit-vintage-engine-5.5.2.jar;C:\Program Files\BlueJ\lib\hamcrest-core-1.3.jar;C:\Program Files\BlueJ\lib\hamcrest-library-1.3.jar;C:\Program Files\BlueJ\lib\lang-stride.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.base.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.controls.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.fxml.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.graphics.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.media.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.properties.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.swing.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.web.jar;C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final
+-d
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc
+-encoding
+UTF-8
+-charset
+UTF-8
+-doctitle
+Final
+-windowtitle
+Final
+-author
+-version
+-nodeprecated
+-package
+-Xdoclint:none
+-link
+https://docs.oracle.com/en/java/javase/11/docs/api/
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final/Faculty.java
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final/courseModule.java
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final/programmeYear.java
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final/gradedCourseModule.java
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final/Admin.java
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final/Student.java
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final/CommandLineInterface.java
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final/Programme.java
+<---- end of javadoc command ---->
+Loading source file C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\Faculty.java...
+Loading source file C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\courseModule.java...
+Loading source file C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\programmeYear.java...
+Loading source file C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\gradedCourseModule.java...
+Loading source file C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\Admin.java...
+Loading source file C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\Student.java...
+Loading source file C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java...
+Loading source file C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\Programme.java...
+Constructing Javadoc information...
+Building index for all the packages and classes...
+Standard Doclet version 17.0.4+8
+Building tree for all the packages and classes...
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\Admin.html...
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\CommandLineInterface.html...
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:449: warning: Tag @author cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @author (Adam Fogarty, 22367748)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:450: warning: Tag @version cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @version (1.0)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:445: warning: @param argument "ArrayList" is not a parameter name.
+     * @param ArrayList<Faculty> allFac, ArrayList containing all faculty in university.
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:452: warning: @return tag cannot be used in method with void return type.
+    public static void facultySaveCSV(ArrayList<Faculty> allFac) throws IOException
+                       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:482: warning: Tag @author cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @author (Adam Fogarty, 22367748)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:483: warning: Tag @version cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @version (1.0)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:478: warning: @param argument "String" is not a parameter name.
+     * @param String name, name of faculty member to find.
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:517: warning: Tag @author cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @author (Adam Fogarty, 22367748)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:518: warning: Tag @version cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @version (1.0)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:513: warning: @param argument "String" is not a parameter name.
+     * @param String name, name of faculty member to find.
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:552: warning: Tag @author cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @author (Adam Fogarty, 22367748)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:553: warning: Tag @version cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @version (1.0)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:548: warning: @param argument "BufferedReader" is not a parameter name.
+     * @param BufferedReader x, stream to read CSV line from.
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:573: warning: Tag @author cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @author (Adam Fogarty, 22367748)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:574: warning: Tag @version cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @version (1.0)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:569: warning: @param argument "Programme" is not a parameter name.
+     * @param Programme programme, object containing details to save.
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:576: warning: @return tag cannot be used in method with void return type.
+    public static void programmeSaveCSV(Programme programme) throws IOException
+                       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:600: warning: Tag @author cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @author (Adam Fogarty, 22367748)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:601: warning: Tag @version cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @version (1.0)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:596: warning: @param argument "String" is not a parameter name.
+     * @param String FileName, name of file to read from.
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:653: warning: Tag @author cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @author (Adam Fogarty, 22367748)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:654: warning: Tag @version cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @version (1.0)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:649: warning: @param argument "Student" is not a parameter name.
+     * @param Student student, object containing details to save.
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:656: warning: @return tag cannot be used in method with void return type.
+    public static void studentSaveCSV(Student student) throws IOException
+                       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:680: warning: Tag @author cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @author (Adam Fogarty, 22367748)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:681: warning: Tag @version cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @version (1.0)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:676: warning: @param argument "String" is not a parameter name.
+     * @param String FileName, name of file to read from.
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:718: warning: Tag @author cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @author (Adam Fogarty, 22367748)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:719: warning: Tag @version cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @version (1.0)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:714: warning: @param argument "String" is not a parameter name.
+     * @param String moduleCode, name of module to find and load.
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:750: warning: Tag @author cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @author (Adam Fogarty, 22367748)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:751: warning: Tag @version cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @version (1.0)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:746: warning: @param argument "String" is not a parameter name.
+     * @param String moduleCode, name of module to find and load.
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:812: warning: Tag @author cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @author (Aron Calvert, 22370374)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\CommandLineInterface.java:813: warning: Tag @version cannot be used in method documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @version (2.0)
+       ^
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\courseModule.html...
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\Faculty.html...
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\gradedCourseModule.html...
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\Programme.html...
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\programmeYear.html...
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\Student.html...
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\Student.java:27: warning: Tag @author cannot be used in constructor documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @author (Adam Fogarty, 22367748);(Paudie Kelly, 22342842);(Ella Curtin, 22363564)
+       ^
+C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\Student.java:28: warning: Tag @version cannot be used in constructor documentation.  It can only be used in the following types of documentation: overview, module, package, class/interface.
+     * @version (2.0)
+       ^
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\package-summary.html...
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\package-tree.html...
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\overview-tree.html...
+Building index for all classes...
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\allclasses-index.html...
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\allpackages-index.html...
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\index-all.html...
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\index.html...
+Generating C:\Users\Adam Fogarty\Desktop\CS4013\handin\Final\doc\help-doc.html...
+37 warnings

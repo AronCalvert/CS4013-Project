@@ -1,16 +1,22 @@
 #BlueJ class context
 comment0.target=Faculty
-comment0.text=\r\n\ \r\n\ View\ prog\ and\ module\ assigned\ to\ them\r\n\ View\ list\ of\ students\ assigned\ to\ each\ module\r\n\ Assign\ grades\ to\ individual\ students\r\n\ \r\n
+comment0.text=\r\n\ \r\n\ Represents\ a\ faculty\ in\ an\ educational\ institution.\r\n\ A\ faculty\ is\ associated\ with\ a\ name,\ department,\ and\ a\ list\ of\ module\ codes.\r\n\ \r\n\ @author\ (Adam\ Fogarty,\ 22367748);(Aron\ Calvert,\ 22370374)\r\n\ @version\ (3.0)\r\n\r\n
 comment1.params=name\ department
 comment1.target=Faculty(java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ Constructs\ a\ new\ Faculty\ with\ the\ specified\ name\ and\ department.\r\n\r\n\ @param\ name\ \ \ \ \ \ \ The\ name\ of\ the\ faculty.\r\n\ @param\ department\ The\ department\ to\ which\ the\ faculty\ belongs.\r\n
 comment2.params=
 comment2.target=java.lang.String\ getName()
+comment2.text=\r\n\ Retrieves\ the\ name\ of\ the\ faculty.\r\n\r\n\ @return\ The\ name\ of\ the\ faculty.\r\n
 comment3.params=
 comment3.target=java.lang.String\ getDepartment()
+comment3.text=\r\n\ Retrieves\ the\ department\ to\ which\ the\ faculty\ belongs.\r\n\r\n\ @return\ The\ department\ of\ the\ faculty.\r\n
 comment4.params=moduleCode
 comment4.target=void\ addModule(java.lang.String)
+comment4.text=\r\n\ Adds\ a\ module\ to\ the\ list\ of\ module\ codes\ associated\ with\ the\ faculty.\r\n\r\n\ @param\ moduleCode\ The\ code\ of\ the\ module\ to\ be\ added.\r\n
 comment5.params=
 comment5.target=java.util.ArrayList\ getModules()
+comment5.text=\r\n\ Retrieves\ the\ list\ of\ module\ codes\ associated\ with\ the\ faculty.\r\n\r\n\ @return\ The\ list\ of\ module\ codes.\r\n
 comment6.params=
 comment6.target=java.lang.String\ getCSVString()
+comment6.text=\r\n\ Generates\ a\ CSV\ string\ representation\ of\ the\ faculty,\ including\ its\ name,\ department,\ and\ associated\ module\ codes.\r\n\r\n\ @return\ The\ CSV\ string\ representation\ of\ the\ faculty.\r\n
 numComments=7

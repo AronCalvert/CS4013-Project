@@ -1,7 +1,9 @@
 #BlueJ class context
 comment0.target=CommandLineInterface
+comment0.text=\r\n\ The\ CommandLineInterface\ class\ serves\ as\ the\ main\ entry\ point\ for\ the\ University\ Management\ System.\r\n\ It\ provides\ a\ command-line\ interface\ for\ students,\ faculty,\ and\ administrators\ to\ interact\ with\ the\ system.\r\n\ The\ class\ includes\ methods\ for\ handling\ various\ operations\ based\ on\ the\ user's\ role.\r\n\ \r\n\ \r\n\ @author\ (Adam\ Fogarty,\ 22367748);(Aron\ Calvert,\ 22370374)\r\n\ @version\ (4.0)\r\n
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
+comment1.text=\r\n\ The\ main\ method\ initializes\ the\ system\ and\ presents\ a\ menu\ for\ users\ to\ choose\ their\ role.\r\n\ The\ system\ allows\ users\ to\ perform\ operations\ based\ on\ their\ role\ until\ they\ choose\ to\ exit.\r\n\ \r\n\ @param\ args\ Command-line\ arguments\ (not\ used\ in\ this\ application).\r\n\ @throws\ IOException\ If\ an\ I/O\ error\ occurs.\r\n
 comment10.params=progCode
 comment10.target=Programme\ programmeReadCSV(java.lang.String)
 comment10.text=\r\n\ programmeReadCSV\ reads\ programme\ details\ from\ a\ named\ CSV\ file.\r\n\r\n\ @param\ String\ FileName,\ name\ of\ file\ to\ read\ from.\r\n\ \r\n\ @return\ Programme,\ object\ containing\ programme\ details,\ null\ if\ not\ found.\r\n\ \r\n\ @author\ (Adam\ Fogarty,\ 22367748)\r\n\ @version\ (1.0)\r\n
@@ -19,13 +21,16 @@ comment14.target=java.lang.String\ getTranscript(Student)
 comment14.text=\r\n\ getTranscript\ \r\n\r\n\ @param\ String\ moduleCode,\ name\ of\ module\ to\ find\ and\ load.\r\n\ \r\n\ @return\ courseModule,\ object\ containing\ module\ details,\ null\ if\ not\ found.\r\n\ \r\n\ @author\ (Adam\ Fogarty,\ 22367748)\r\n\ @version\ (1.0)\r\n
 comment15.params=factor\ set
 comment15.target=double\ QCAcalculation(int,\ java.util.ArrayList)
+comment15.text=\r\n\ Calculates\ the\ Quality\ Credit\ Average\ (QCA)\ based\ on\ a\ given\ factor\ and\ a\ set\ of\ graded\ course\ modules.\r\n\r\n\ The\ QCA\ is\ computed\ using\ the\ formula\:\r\n\ QCA\ \=\ \u03A3(QPV\ *\ Credits\ *\ Factor)\ /\ (Attempted\ Hours\ -\ Non-Quality\ Hours)\r\n\r\n\ @param\ factor\ The\ factor\ used\ to\ weigh\ the\ credit\ hours.\r\n\ @param\ set\ \ \ \ An\ ArrayList\ of\ gradedCourseModule\ objects\ representing\ the\ student's\ graded\ modules.\r\n\ @return\ The\ calculated\ Quality\ Credit\ Average\ (QCA).\r\n\ \r\n\ @author\ (Aron\ Calvert,\ 22370374)\r\n\ @version\ (2.0)\r\n
 comment2.params=scanner
 comment2.target=void\ handleAdminOperations(java.util.Scanner)
+comment2.text=\r\n\ Handles\ various\ administrative\ operations\ in\ the\ university\ management\ system.\r\n\ This\ method\ prompts\ the\ user\ to\ enter\ an\ admin\ username\ and\ password\ to\ login.\r\n\ Once\ logged\ in,\ the\ user\ can\ perform\ operations\ like\ creating\ faculty,\ assigning\ modules\ to\ faculty,\ creating\ programs,\ \r\n\ adding\ modules\ to\ programs,\ creating\ students,\ getting\ transcripts,\ and\ viewing\ faculties,\ students,\ and\ programs.\r\n\r\n\ @param\ scanner\ The\ Scanner\ object\ for\ user\ input.\r\n\ @throws\ IOException\ If\ an\ I/O\ error\ occurs.\r\n\ \r\n\ @author\ (Adam\ Fogarty,\ 22367748);(Aron\ Calvert,\ 22370374)\r\n\ @version\ (2.0)\r\n
 comment3.params=keyboard
 comment3.target=void\ handleFacultyOperations(java.util.Scanner)
-comment3.text=\r\n\ handleFacultyOperations\ displays\ the\ faculty\ menu.\r\n\ \r\n\ @param\ Scanner\ keyboard,\ input.\ \r\n\ \r\n\ @return\ VOID.\r\n\ \r\n\ @author\ (Adam\ Fogarty,\ 22367748);(Aron\ Calvert,\ 22370374)\r\n\ @version\ (2.0)\r\n
+comment3.text=\r\n\ handleFacultyOperations\ displays\ the\ faculty\ menu.\r\n\ \r\n\ @param\ Scanner\ keyboard,\ input.\ \r\n\ \r\n\ @return\ VOID.\r\n\ \r\n\ @author\ (Adam\ Fogarty,\ 22367748);(Aron\ Calvert,\ 22370374)\r\n\ @version\ (3.0)\r\n
 comment4.params=scanner
 comment4.target=void\ handleStudentOperations(java.util.Scanner)
+comment4.text=\r\n\ Handles\ various\ operations\ for\ a\ student\ in\ a\ university\ management\ system.\r\n\ This\ method\ prompts\ the\ user\ to\ enter\ a\ student\ ID,\ retrieves\ the\ corresponding\ student\ object,\r\n\ and\ allows\ the\ student\ to\ view\ their\ transcript\ or\ exit\ the\ system.\r\n\r\n\ @param\ scanner\ The\ Scanner\ object\ for\ user\ input.\r\n\ @throws\ IOException\ If\ an\ I/O\ error\ occurs.\r\n\ \r\n\ @author\ (Adam\ Fogarty,\ 22367748);(Aron\ Calvert,\ 22370374)\r\n\ @version\ (2.0)\r\n
 comment5.params=allFac
 comment5.target=void\ facultySaveCSV(java.util.ArrayList)
 comment5.text=\r\n\ facultySaveCSV\ writes\ all\ faculty\ details\ to\ CSV\ file,\ "Faculty.CSV".\r\n\ \r\n\ @param\ ArrayList<Faculty>\ allFac,\ ArrayList\ containing\ all\ faculty\ in\ university.\r\n\ \r\n\ @return\ VOID.\r\n\ \r\n\ @author\ (Adam\ Fogarty,\ 22367748)\r\n\ @version\ (1.0)\r\n

@@ -2,9 +2,25 @@ import java.util.Scanner;
 import java.io.*;
 import java.util.*;
 
+/**
+ * The CommandLineInterface class serves as the main entry point for the University Management System.
+ * It provides a command-line interface for students, faculty, and administrators to interact with the system.
+ * The class includes methods for handling various operations based on the user's role.
+ * 
+ * 
+ * @author (Adam Fogarty, 22367748);(Aron Calvert, 22370374)
+ * @version (4.0)
+ */
 public class CommandLineInterface {
     static Admin admin = new Admin();
 
+    /**
+     * The main method initializes the system and presents a menu for users to choose their role.
+     * The system allows users to perform operations based on their role until they choose to exit.
+     * 
+     * @param args Command-line arguments (not used in this application).
+     * @throws IOException If an I/O error occurs.
+     */
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         boolean mainExit = false;
@@ -44,6 +60,18 @@ public class CommandLineInterface {
         scanner.close();
     }
 
+    /**
+     * Handles various administrative operations in the university management system.
+     * This method prompts the user to enter an admin username and password to login.
+     * Once logged in, the user can perform operations like creating faculty, assigning modules to faculty, creating programs, 
+     * adding modules to programs, creating students, getting transcripts, and viewing faculties, students, and programs.
+     *
+     * @param scanner The Scanner object for user input.
+     * @throws IOException If an I/O error occurs.
+     * 
+     * @author (Adam Fogarty, 22367748);(Aron Calvert, 22370374)
+     * @version (2.0)
+     */
     private static void handleAdminOperations(Scanner scanner) throws IOException {
         System.out.println("Please enter admin username:");
         String username = scanner.next();
@@ -257,7 +285,7 @@ public class CommandLineInterface {
      * @return VOID.
      * 
      * @author (Adam Fogarty, 22367748);(Aron Calvert, 22370374)
-     * @version (2.0)
+     * @version (3.0)
      */
     private static void handleFacultyOperations(Scanner keyboard) throws IOException {
         //Scanner keyboard = new Scanner(System.in);
@@ -365,6 +393,17 @@ public class CommandLineInterface {
         }
     }
 
+    /**
+     * Handles various operations for a student in a university management system.
+     * This method prompts the user to enter a student ID, retrieves the corresponding student object,
+     * and allows the student to view their transcript or exit the system.
+     *
+     * @param scanner The Scanner object for user input.
+     * @throws IOException If an I/O error occurs.
+     * 
+     * @author (Adam Fogarty, 22367748);(Aron Calvert, 22370374)
+     * @version (2.0)
+     */
     private static void handleStudentOperations(Scanner scanner) throws IOException {
         System.out.println("Enter Student ID:");
         String studentId = scanner.next();
@@ -760,6 +799,19 @@ public class CommandLineInterface {
         return transcript;
     }
     
+    /**
+     * Calculates the Quality Credit Average (QCA) based on a given factor and a set of graded course modules.
+     *
+     * The QCA is computed using the formula:
+     * QCA = Σ(QPV * Credits * Factor) / (Attempted Hours - Non-Quality Hours)
+     *
+     * @param factor The factor used to weigh the credit hours.
+     * @param set    An ArrayList of gradedCourseModule objects representing the student's graded modules.
+     * @return The calculated Quality Credit Average (QCA).
+     * 
+     * @author (Aron Calvert, 22370374)
+     * @version (2.0)
+     */
     public static double QCAcalculation(int factor, ArrayList<gradedCourseModule> set) {
         double moduleQpv = 0;
         double qcs = 0;

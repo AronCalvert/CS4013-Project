@@ -1,6 +1,7 @@
 #BlueJ class context
 comment0.target=programmeYear
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ programmeYear\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ The\ programmeYear\ class\ represents\ a\ specific\ academic\ year\ in\ a\ program.\r\n\ It\ contains\ two\ semesters,\ each\ consisting\ of\ graded\ course\ modules.\r\n\ \r\n\ \r\n\ @author\ (Adam\ Fogarty,\ 22367748);(Paudie\ Kelly,\ 22342842);(Ella\ Curtin,\ 22363564);(Aron\ Calvert,\ 22370374)\r\n\ @version\ (1.0)\r\n
 comment1.params=
 comment1.target=programmeYear()
+comment1.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ programmeYear.\r\n\ Initializes\ the\ lists\ for\ the\ first\ and\ second\ semesters.\r\n
 numComments=2
